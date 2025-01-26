@@ -381,6 +381,10 @@ template {
     .container-sm {
         max-width: 540px
     }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
 }
 
 @media(min-width:768px) {
@@ -2891,6 +2895,10 @@ textarea.form-control.is-invalid {
     .navbar-expand-sm>.container-xl {
         padding-right: 0;
         padding-left: 0
+    }
+
+    .navbar-brand{
+        font-size: 1.02rem;
     }
 }
 
@@ -7511,7 +7519,7 @@ p:not(:last-of-type) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/portfolio/img/bg/header-bg-sm.jpg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg/header-bg-sm.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed
@@ -7519,19 +7527,19 @@ p:not(:last-of-type) {
 
 @media(-webkit-min-device-pixel-ratio:2), (min-resolution:192dpi) {
     .header {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/portfolio/img/bg/header-bg-md.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg/header-bg-md.jpg")
     }
 }
 
 @media only screen and (min-width:100em) {
     .header {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/portfolio/img/bg/header-bg-md.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg/header-bg-md.jpg")
     }
 }
 
 @media only screen and (min-width:120em) {
     .header {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/portfolio/img/bg/header-bg-lg.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg/header-bg-lg.jpg")
     }
 }
 
@@ -7658,7 +7666,7 @@ p:not(:last-of-type) {
 
 .footer {
     padding-top: 4.375rem;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/portfolio/img/bg/footer-bg-sm.jpg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/bg/footer-bg-sm.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -7667,19 +7675,19 @@ p:not(:last-of-type) {
 
 @media(-webkit-min-device-pixel-ratio:2), (min-resolution:192dpi) {
     .footer {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/portfolio/img/bg/footer-bg-md.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/bg/footer-bg-md.jpg")
     }
 }
 
 @media only screen and (min-width:40em) {
     .footer {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/portfolio/img/bg/footer-bg-md.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/bg/footer-bg-md.jpg")
     }
 }
 
 @media only screen and (min-width:120em) {
     .footer {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/portfolio/img/bg/footer-bg-lg.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/bg/footer-bg-lg.jpg")
     }
 }
 
@@ -7966,7 +7974,7 @@ p:not(:last-of-type) {
     fill: #f7f7f7
 }
 
-.contact .social-icons__icon {
+.social-icons__icon {
     fill: #0984e3;
 }
 
@@ -8038,7 +8046,7 @@ section {
 
 .counter {
     padding: 5rem 0;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/portfolio/img/bg/counter-bg-sm.jpg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg/counter-bg-sm.jpg");
     background-size: cover;
     background-position: bottom;
     background-attachment: fixed;
@@ -8050,19 +8058,19 @@ section {
 
 @media(-webkit-min-device-pixel-ratio:2), (min-resolution:192dpi) {
     .counter {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/portfolio/img/bg/counter-bg-md.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg/counter-bg-md.jpg")
     }
 }
 
 @media only screen and (min-width:40em) {
     .counter {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/portfolio/img/bg/counter-bg-md.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg/counter-bg-md.jpg")
     }
 }
 
 @media only screen and (min-width:120em) {
     .counter {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/portfolio/img/bg/counter-bg-lg.jpg")
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/bg/counter-bg-lg.jpg")
     }
 }
 
@@ -8112,14 +8120,6 @@ section {
     font-size: 1.25rem
 }
 
-.contact .form-group .form-control {
-    min-height: 2.8125rem
-}
-
-.contact .form-group .form-control:focus {
-    border: 1px solid rgba(9, 132, 227, .3);
-    box-shadow: 0 0 .3125rem 0 rgba(9, 132, 227, .2)
-}
 
 .blog-section {
     background-color: #f1f1f1
