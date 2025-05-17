@@ -1,41 +1,39 @@
-# 👋 Hi, I'm Yaseer Haja
+# Hi there, I'm Yaseer Haja 👋
 
-Welcome to my GitHub profile!  
-I'm a passionate developer and lifelong learner, always exploring new technologies and building cool things.
+Welcome to my GitHub profile! I'm a passionate developer and technology enthusiast who loves building solutions, learning new technologies, and collaborating on open source projects.
 
 ## 🚀 About Me
 
-- 💻 Software Engineer | Backend & Full Stack Enthusiast
-- 🌱 Currently learning: Cloud engineering, DevOps, and AI/ML integrations
-- 🛠️ Languages & Tools:  
-  ![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)
-  ![Python](https://img.shields.io/badge/-Python-black?style=flat-square&logo=python)
-  ![TypeScript](https://img.shields.io/badge/-TypeScript-black?style=flat-square&logo=typescript)
-  ![Node.js](https://img.shields.io/badge/-Node.js-black?style=flat-square&logo=node.js)
-  ![React](https://img.shields.io/badge/-React-black?style=flat-square&logo=react)
-  ![Docker](https://img.shields.io/badge/-Docker-black?style=flat-square&logo=docker)
-  ![AWS](https://img.shields.io/badge/-AWS-black?style=flat-square&logo=amazon-aws)
+- 💻 Software Engineer with a keen interest in backend development, cloud computing, and automation.
+- 🌱 Currently exploring new frameworks and deepening my knowledge in DevOps and distributed systems.
+- 🛠️ Skilled in Python, JavaScript, TypeScript, and a handful of other languages and frameworks.
+- 🤝 Always open to collaborating on interesting projects and contributing to open source.
 
-- 🔭 I’m currently working on:  
-  - Open source contributions  
-  - Building scalable web APIs  
-  - Automation and cloud-native apps
+## 📫 How to Reach Me
 
-- 📫 How to reach me:  
-  [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/yaseerhaja)
-  [![Twitter](https://img.shields.io/badge/-Twitter-black?style=flat-square&logo=twitter)](https://twitter.com/yaseerhaja)
+- GitHub: [yaseerhaja](https://github.com/yaseerhaja)
+- LinkedIn: [linkedin.com/in/yaseerhaja](https://linkedin.com/in/yaseerhaja)
+- Email: yaseerhaja@gmail.com
+
+## 🛠️ Technologies & Tools
+
+![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
+![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=white)
+![AWS](https://img.shields.io/badge/-AWS-232F3E?logo=amazon-aws&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)
 
 ## 📈 GitHub Stats
 
-![Yaseer's GitHub Stats](https://github-readme-stats.vercel.app/api?username=yaseerhaja&show_icons=true&theme=radical)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=yaseerhaja&layout=compact&theme=radical)
+![Yaseer's GitHub Stats](https://github-readme-stats.vercel.app/api?username=yaseerhaja&show_icons=true&hide_title=true&count_private=true&theme=github_dark)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=yaseerhaja&layout=compact&theme=github_dark)
 
-## 📝 Latest Projects
+## ⚡ Fun Fact
 
-- 🌐 [Project 1](#) — Brief description of what it does.
-- ⚡ [Project 2](#) — Technologies used and why it's cool.
-- 📦 [Project 3](#) — A one-liner about this project.
+I love solving puzzles and automating daily tasks to make life a little easier!
 
-> “Code is like humor. When you have to explain it, it’s bad.” – Cory House
+---
 
-Thanks for stopping by! ⭐
+Thanks for stopping by! Feel free to check out my repositories and connect with me. Let's build something awesome together! 🚀
