@@ -6,7 +6,7 @@
     <title>Hajamohaideen Kudhbudeen — Senior Frontend Engineer</title>
     <meta name="description" content="Senior Frontend Engineer with 17+ years building large-scale customer-facing platforms in aviation, banking and telecom with Angular, TypeScript and design systems. Based in Amstelveen, Netherlands.">
     <meta name="author" content="Hajamohaideen Kudhbudeen">
-    <meta name="theme-color" content="#0a0a0c">
+    <meta name="theme-color" content="#08080a">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Hajamohaideen Kudhbudeen — Senior Frontend Engineer">
@@ -52,43 +52,46 @@
                 </button>
             </div>
         </div>
+        <span class="nav__progress" id="navProgress" aria-hidden="true"></span>
     </header>
 
     <main id="main">
         <!-- ======================================================= hero -->
         <section class="hero" id="top">
+            <div class="hero__aura" id="heroAura" aria-hidden="true"></div>
+
             <div class="wrap">
                 <div class="hero__grid">
                     <div>
-                        <span class="badge">
+                        <span class="badge reveal">
                             <span class="badge__dot" aria-hidden="true"></span>
                             EU permanent resident &middot; no sponsorship required
                         </span>
 
-                        <h1 class="hero__title">Hajamohaideen<br><span>Kudhbudeen</span></h1>
+                        <h1 class="hero__title" data-split>Hajamohaideen <span class="accent">Kudhbudeen</span></h1>
 
-                        <p class="hero__role">
+                        <p class="hero__role reveal">
                             Senior Frontend Engineer <em>/</em> Angular <em>/</em> TypeScript <em>/</em> Design Systems
                         </p>
 
-                        <p class="hero__lede">
+                        <p class="hero__lede reveal">
                             17+ years building large-scale customer-facing platforms in aviation, banking
                             and telecom. I build the shared UI libraries, accessibility standards and
                             AI-assisted tooling that let other teams ship faster.
                         </p>
 
-                        <div class="hero__cta">
+                        <div class="hero__cta reveal">
                             <a class="btn btn--primary" href="pdf/HajamohaideenKudhbudeen.pdf" target="_blank" rel="noopener">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                                Download resume
+                                <span>Download resume</span>
                             </a>
                             <a class="btn btn--ghost" href="#contact">
-                                Get in touch
+                                <span>Get in touch</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                             </a>
                         </div>
 
-                        <p class="hero__meta">
+                        <p class="hero__meta reveal">
                             <span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
                                 Amstelveen, Noord-Holland, Netherlands
@@ -100,7 +103,7 @@
                         </p>
                     </div>
 
-                    <figure class="hero__portrait">
+                    <figure class="hero__portrait reveal">
                         <img src="img/developer.jpg" width="600" height="600"
                              alt="Portrait of Hajamohaideen Kudhbudeen" fetchpriority="high">
                     </figure>
@@ -130,7 +133,7 @@
         <!-- ======================================================= about -->
         <section class="section" id="about">
             <div class="wrap">
-                <div class="section__head">
+                <div class="section__head reveal">
                     <span class="section__eyebrow">01 &mdash; About</span>
                     <h2 class="section__title">What I actually do</h2>
                 </div>
@@ -169,11 +172,82 @@
         <!-- ====================================================== skills -->
         <section class="section" id="skills">
             <div class="wrap">
-                <div class="section__head">
+                <div class="section__head reveal">
                     <span class="section__eyebrow">02 &mdash; Skills</span>
                     <h2 class="section__title">Toolkit</h2>
                     <p class="section__note">Grouped by what I use them for, not by how long the list looks.</p>
                 </div>
+
+                <!-- infographic: where each layer of the stack sits -->
+                <figure class="infographic reveal">
+                    <div class="infographic__scroll">
+                        <svg viewBox="0 0 1080 312" role="img" aria-labelledby="stackTitle stackDesc" preserveAspectRatio="xMidYMid meet">
+                            <title id="stackTitle">The stack I work across</title>
+                            <desc id="stackDesc">Four layers, from the top down: experience layer (booking portal, seatmap, TV guide SPA); design system (tokens, Angular Material and CDK, Storybook, Nx monorepo); data and APIs (Node.js, GraphQL, REST, MongoDB, MySQL); and platform (Azure, Docker, Kubernetes, CI/CD). Accessibility, testing and AI tooling cut across all four layers.</desc>
+
+                            <!-- layer 01 -->
+                            <g class="info-row" style="--d:0ms">
+                                <rect class="info-card" x="1" y="9" width="700" height="62" rx="14"/>
+                                <rect class="info-badge" x="17" y="25" width="32" height="32" rx="9"/>
+                                <text class="info-num" x="33" y="46">01</text>
+                                <text class="info-title" x="66" y="36">Experience layer</text>
+                                <text class="info-sub" x="66" y="56">Booking portal &middot; Seatmap &middot; Interactive TV guide SPA</text>
+                            </g>
+
+                            <!-- layer 02 — the specialty -->
+                            <g class="info-row info-row--key" style="--d:90ms">
+                                <rect class="info-card" x="1" y="87" width="700" height="62" rx="14"/>
+                                <rect class="info-badge" x="17" y="103" width="32" height="32" rx="9"/>
+                                <text class="info-num" x="33" y="124">02</text>
+                                <text class="info-title" x="66" y="114">Design system</text>
+                                <text class="info-sub" x="66" y="134">Tokens &middot; Angular Material / CDK &middot; Storybook &middot; Nx monorepo</text>
+                            </g>
+
+                            <!-- layer 03 -->
+                            <g class="info-row" style="--d:180ms">
+                                <rect class="info-card" x="1" y="165" width="700" height="62" rx="14"/>
+                                <rect class="info-badge" x="17" y="181" width="32" height="32" rx="9"/>
+                                <text class="info-num" x="33" y="202">03</text>
+                                <text class="info-title" x="66" y="192">Data &amp; APIs</text>
+                                <text class="info-sub" x="66" y="212">Node.js &middot; GraphQL &middot; REST &middot; MongoDB &middot; MySQL</text>
+                            </g>
+
+                            <!-- layer 04 -->
+                            <g class="info-row" style="--d:270ms">
+                                <rect class="info-card" x="1" y="243" width="700" height="62" rx="14"/>
+                                <rect class="info-badge" x="17" y="259" width="32" height="32" rx="9"/>
+                                <text class="info-num" x="33" y="280">04</text>
+                                <text class="info-title" x="66" y="270">Platform</text>
+                                <text class="info-sub" x="66" y="290">Azure &middot; Docker &middot; Kubernetes &middot; CI/CD pipelines</text>
+                            </g>
+
+                            <!-- bracket tying every layer to the cross-cutting panel -->
+                            <path class="info-bracket" d="M709 40 H725 V274 H709" fill="none"/>
+                            <path class="info-bracket" d="M725 157 H747" fill="none"/>
+
+                            <!-- cross-cutting panel -->
+                            <g class="info-row" style="--d:360ms">
+                                <rect class="info-panel" x="747" y="9" width="332" height="296" rx="16"/>
+                                <text class="info-kicker" x="771" y="40">CROSS-CUTTING</text>
+
+                                <rect class="info-chip" x="771" y="56" width="284" height="64" rx="12"/>
+                                <text class="info-title" x="791" y="82">Accessibility</text>
+                                <text class="info-sub" x="791" y="102">WCAG 2.1 AA &middot; ARIA &middot; VoiceOver / NVDA</text>
+
+                                <rect class="info-chip" x="771" y="136" width="284" height="64" rx="12"/>
+                                <text class="info-title" x="791" y="162">Testing &amp; quality</text>
+                                <text class="info-sub" x="791" y="182">Jest &middot; Playwright &middot; CDK harness &middot; TDD</text>
+
+                                <rect class="info-chip" x="771" y="216" width="284" height="64" rx="12"/>
+                                <text class="info-title" x="791" y="242">AI tooling</text>
+                                <text class="info-sub" x="791" y="262">Agents &middot; Figma-to-code &middot; Skill packages</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <figcaption class="infographic__cap">
+                        Four layers I work across, and the three concerns that cut through all of them.
+                    </figcaption>
+                </figure>
 
                 <div class="skills">
                     <article class="skill-card reveal">
@@ -269,14 +343,17 @@
         <!-- ================================================== experience -->
         <section class="section" id="experience">
             <div class="wrap">
-                <div class="section__head">
+                <div class="section__head reveal">
                     <span class="section__eyebrow">03 &mdash; Experience</span>
                     <h2 class="section__title">Where I've shipped</h2>
                     <p class="section__note">Aviation, telecom and financial services &mdash; consistently on the platform side, close to real customers.</p>
                 </div>
 
-                <div class="timeline">
-                    <article class="role reveal">
+                <div class="timeline" id="timeline">
+                    <span class="timeline__rail" id="timelineRail" aria-hidden="true"><i></i></span>
+
+                    <article class="role">
+                        <span class="role__dot" aria-hidden="true"></span>
                         <div class="role__head">
                             <div>
                                 <h3 class="role__title">Senior Frontend Engineer</h3>
@@ -297,7 +374,8 @@
                         </ul>
                     </article>
 
-                    <article class="role reveal">
+                    <article class="role">
+                        <span class="role__dot" aria-hidden="true"></span>
                         <div class="role__head">
                             <div>
                                 <h3 class="role__title">Front End Lead Developer</h3>
@@ -315,7 +393,8 @@
                         </ul>
                     </article>
 
-                    <article class="role reveal">
+                    <article class="role">
+                        <span class="role__dot" aria-hidden="true"></span>
                         <div class="role__head">
                             <div>
                                 <h3 class="role__title">Front End Developer</h3>
@@ -331,7 +410,8 @@
                         </ul>
                     </article>
 
-                    <article class="role reveal">
+                    <article class="role">
+                        <span class="role__dot" aria-hidden="true"></span>
                         <div class="role__head">
                             <div>
                                 <h3 class="role__title">Junior Front End Developer</h3>
@@ -351,7 +431,7 @@
         <!-- ================================================== background -->
         <section class="section" id="background">
             <div class="wrap">
-                <div class="section__head">
+                <div class="section__head reveal">
                     <span class="section__eyebrow">04 &mdash; Background</span>
                     <h2 class="section__title">Education, languages &amp; awards</h2>
                 </div>
@@ -372,19 +452,19 @@
                         <ul class="panel__list">
                             <li>
                                 <b>Tamil</b> &mdash; Native
-                                <span class="meter"><i style="width:100%"></i></span>
+                                <span class="meter"><i style="--v:100%;--d:80ms"></i></span>
                             </li>
                             <li>
                                 <b>English</b> &mdash; Proficient
-                                <span class="meter"><i style="width:90%"></i></span>
+                                <span class="meter"><i style="--v:90%;--d:180ms"></i></span>
                             </li>
                             <li>
                                 <b>Dutch</b> &mdash; Intermediate (A2)
-                                <span class="meter"><i style="width:45%"></i></span>
+                                <span class="meter"><i style="--v:45%;--d:280ms"></i></span>
                             </li>
                             <li>
                                 <b>French</b> &mdash; Beginner (A1)
-                                <span class="meter"><i style="width:22%"></i></span>
+                                <span class="meter"><i style="--v:22%;--d:380ms"></i></span>
                             </li>
                         </ul>
                     </article>
@@ -415,7 +495,7 @@
                         <div class="hero__cta">
                             <a class="btn btn--primary" href="mailto:yaseerhaja@gmail.com">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
-                                Email me
+                                <span>Email me</span>
                             </a>
                         </div>
                     </div>

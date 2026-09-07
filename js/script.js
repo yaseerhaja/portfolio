@@ -1,9 +1,13 @@
-/* Hajamohaideen Kudhbudeen — portfolio interactions */
+/* Hajamohaideen Kudhbudeen — portfolio interactions
+   Vanilla, no dependencies. Every effect is transform/opacity only and
+   switches itself off under prefers-reduced-motion. */
 (function () {
   'use strict';
 
   var root = document.documentElement;
   var STORAGE_KEY = 'hk-theme';
+  var reduceMotion =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------------------------------------------------------- theme */
   var themeToggle = document.getElementById('themeToggle');
@@ -17,7 +21,7 @@
       );
     }
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0a0c' : '#fafafa');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#08080a' : '#fbfbfc');
   }
 
   var stored = null;
@@ -52,7 +56,10 @@
   function closeNav() {
     if (!navLinks) return;
     navLinks.classList.remove('is-open');
-    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    if (navToggle) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    }
   }
 
   if (navToggle && navLinks) {
@@ -71,43 +78,67 @@
     });
   }
 
-  /* -------------------------------------------------- sticky nav state */
-  var nav = document.getElementById('nav');
-  var onScroll = function () {
-    if (nav) nav.classList.toggle('is-stuck', window.scrollY > 8);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  /* --------------------------------------------- headline word reveal */
+  /* Wraps each word as <span class="w"><i>word</i></span> so the mask can
+     slide it up. Text stays in the markup for crawlers and no-JS readers. */
+  function splitWords(el) {
+    var words = [];
 
-  /* ------------------------------------------------ scroll reveal + spy */
-  var reduceMotion =
-    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    (function walk(node) {
+      var kids = Array.prototype.slice.call(node.childNodes);
+      kids.forEach(function (child) {
+        if (child.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          child.nodeValue.split(/(\s+)/).forEach(function (chunk) {
+            if (!chunk) return;
+            if (/^\s+$/.test(chunk)) {
+              frag.appendChild(document.createTextNode(chunk));
+              return;
+            }
+            var mask = document.createElement('span');
+            var inner = document.createElement('i');
+            mask.className = 'w';
+            inner.textContent = chunk;
+            mask.appendChild(inner);
+            frag.appendChild(mask);
+            words.push(inner);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          walk(child);
+        }
+      });
+    })(el);
 
-  var revealItems = document.querySelectorAll('.reveal');
-
-  if (!('IntersectionObserver' in window) || reduceMotion) {
-    Array.prototype.forEach.call(revealItems, function (el) {
-      el.classList.add('is-in');
-    });
-  } else {
-    var revealObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry, i) {
-          if (!entry.isIntersecting) return;
-          var el = entry.target;
-          el.style.transitionDelay = Math.min(i * 60, 240) + 'ms';
-          el.classList.add('is-in');
-          revealObserver.unobserve(el);
-        });
-      },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.08 }
-    );
-    Array.prototype.forEach.call(revealItems, function (el) {
-      revealObserver.observe(el);
+    words.forEach(function (w, i) {
+      w.style.setProperty('--d', i * 80 + 'ms');
     });
   }
 
-  /* section highlight in nav */
+  var splitTargets = document.querySelectorAll('[data-split]');
+  if (!reduceMotion) {
+    Array.prototype.forEach.call(splitTargets, splitWords);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        Array.prototype.forEach.call(splitTargets, function (el) {
+          el.classList.add('is-lit');
+        });
+      });
+    });
+  }
+
+  /* -------------------------------------------------- sticky nav state */
+  var nav = document.getElementById('nav');
+  var navProgress = document.getElementById('navProgress');
+
+  /* --------------------------------------------------------- hero aura */
+  var heroAura = document.getElementById('heroAura');
+
+  /* ----------------------------------------------------- timeline rail */
+  var timeline = document.getElementById('timeline');
+  var timelineRail = document.getElementById('timelineRail');
+
+  /* --------------------------------------------------------- scrollspy */
   var links = document.querySelectorAll('.nav__link');
   var sections = [];
   Array.prototype.forEach.call(links, function (link) {
@@ -115,28 +146,130 @@
     if (target) sections.push({ link: link, el: target });
   });
 
-  function syncSpy() {
-    if (!sections.length) return;
+  function currentSection() {
     var line = window.scrollY + window.innerHeight * 0.35;
     var current = null;
-
     sections.forEach(function (s) {
       if (s.el.offsetTop <= line) current = s;
     });
-
-    /* past the last section (footer in view) keeps the last one lit */
     if (!current && window.scrollY + window.innerHeight >= document.body.scrollHeight - 4) {
       current = sections[sections.length - 1];
     }
+    return current;
+  }
 
+  /* one rAF-throttled pass for everything that reads scroll position */
+  var ticking = false;
+
+  function onFrame() {
+    ticking = false;
+    var y = window.scrollY;
+    var vh = window.innerHeight;
+
+    if (nav) nav.classList.toggle('is-stuck', y > 8);
+
+    if (navProgress) {
+      var max = document.documentElement.scrollHeight - vh;
+      var p = max > 0 ? Math.min(y / max, 1) : 0;
+      navProgress.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    }
+
+    /* gentle parallax on the decorative aura only — never on text */
+    if (heroAura && !reduceMotion && y < vh * 1.6) {
+      heroAura.style.transform = 'translate3d(0,' + (y * 0.16).toFixed(2) + 'px,0)';
+    }
+
+    /* rail fills as the timeline passes the reading line */
+    if (timeline && timelineRail) {
+      var box = timeline.getBoundingClientRect();
+      var travelled = vh * 0.68 - box.top;
+      var ratio = Math.max(0, Math.min(travelled / box.height, 1));
+      timelineRail.style.setProperty('--p', ratio.toFixed(4));
+    }
+
+    var current = currentSection();
     sections.forEach(function (s) {
       s.link.classList.toggle('is-active', s === current);
     });
   }
 
-  window.addEventListener('scroll', syncSpy, { passive: true });
-  window.addEventListener('resize', syncSpy);
-  syncSpy();
+  function requestFrame() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(onFrame);
+  }
+
+  window.addEventListener('scroll', requestFrame, { passive: true });
+  window.addEventListener('resize', requestFrame);
+  onFrame();
+
+  /* ------------------------------------------------------ scroll reveal */
+  var revealItems = document.querySelectorAll('.reveal');
+  var roles = document.querySelectorAll('.role');
+
+  /* stagger the bullets inside each role card */
+  Array.prototype.forEach.call(roles, function (role) {
+    var items = role.querySelectorAll('.role__list li');
+    Array.prototype.forEach.call(items, function (li, i) {
+      li.style.setProperty('--d', Math.min(i * 55, 440) + 'ms');
+    });
+  });
+
+  function markAll() {
+    Array.prototype.forEach.call(revealItems, function (el) {
+      el.classList.add('is-in');
+    });
+    Array.prototype.forEach.call(roles, function (el) {
+      el.classList.add('is-in');
+    });
+  }
+
+  if (!('IntersectionObserver' in window) || reduceMotion) {
+    markAll();
+  } else {
+    var observer = new IntersectionObserver(
+      function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          obs.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
+    );
+
+    /* siblings that enter together get a small cascade */
+    var groups = document.querySelectorAll('.stats, .skills, .cards3, .facts, .contact__links');
+    Array.prototype.forEach.call(groups, function (group) {
+      var kids = group.querySelectorAll(':scope > .reveal');
+      Array.prototype.forEach.call(kids, function (kid, i) {
+        kid.style.setProperty('--d', Math.min(i * 70, 420) + 'ms');
+      });
+    });
+
+    Array.prototype.forEach.call(revealItems, function (el) {
+      observer.observe(el);
+    });
+    Array.prototype.forEach.call(roles, function (el) {
+      observer.observe(el);
+    });
+  }
+
+  /* --------------------------------------------- pointer-tracked sheen */
+  if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !reduceMotion) {
+    var cards = document.querySelectorAll('.skill-card');
+    Array.prototype.forEach.call(cards, function (card) {
+      card.addEventListener(
+        'pointermove',
+        function (e) {
+          var r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+          card.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+        },
+        { passive: true }
+      );
+    });
+  }
 
   /* ------------------------------------------------------------ year */
   var year = document.getElementById('year');
