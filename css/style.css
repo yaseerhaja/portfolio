@@ -758,9 +758,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease),
     box-shadow var(--dur) var(--ease), opacity 620ms var(--ease);
 }
+/* no transform on hover — the dot is anchored to the rail and must not drift */
 .role:hover {
   border-color: var(--accent-line);
-  transform: translateX(4px);
   box-shadow: var(--shadow-lift);
 }
 .role__dot {
@@ -906,12 +906,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--surface-2);
   transform: translateX(6px);
 }
-.contact-link > svg:first-child {
-  width: 20px;
-  height: 20px;
-  color: var(--accent);
-  flex: 0 0 auto;
-}
+.contact-link svg { width: 20px; height: 20px; flex: 0 0 auto; }
+.contact-link > svg:first-child { color: var(--accent); }
 .contact-link__k {
   display: block;
   font-size: 0.72rem;
