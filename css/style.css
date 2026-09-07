@@ -522,7 +522,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero__portrait img {
   position: relative;
   z-index: 1;
-  width: min(330px, 62vw);
+  width: 100%;
+  max-width: 330px;
   height: auto;
   aspect-ratio: 1;
   object-fit: cover;
@@ -985,9 +986,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 .reveal.is-in { opacity: 1; transform: none; }
 
 /* --------------------------------------------------------------- responsive */
-@media (max-width: 980px) {
+@media (max-width: 860px) {
   .hero__grid { grid-template-columns: 1fr; }
-  .hero__portrait { order: -1; justify-self: start; }
+  /* centred rather than left-aligned: symmetric whitespace reads as a
+     choice, a lone portrait pinned left just looks marooned */
+  .hero__portrait { order: -1; justify-self: center; }
   .about { grid-template-columns: 1fr; }
   .contact { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
