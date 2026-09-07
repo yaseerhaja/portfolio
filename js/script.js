@@ -170,20 +170,20 @@
             out.textContent = word.slice(0, ci);
             if (ci === word.length) {
               deleting = true;
-              timer = setTimeout(step, 1800);
+              timer = setTimeout(step, 2600);
               return;
             }
-            timer = setTimeout(step, 62);
+            timer = setTimeout(step, 105);
           } else {
             ci--;
             out.textContent = word.slice(0, ci);
             if (ci === 0) {
               deleting = false;
               wi = (wi + 1) % words.length;
-              timer = setTimeout(step, 320);
+              timer = setTimeout(step, 520);
               return;
             }
-            timer = setTimeout(step, 28);
+            timer = setTimeout(step, 55);
           }
         };
 
@@ -198,7 +198,7 @@
 
         ci = words[0].length;
         deleting = true;
-        timer = setTimeout(step, 1600);
+        timer = setTimeout(step, 2200);
       }
     }
   }
