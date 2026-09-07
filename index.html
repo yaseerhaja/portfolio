@@ -1,433 +1,474 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hajamohaideen Kudhbudeen — Senior Frontend Engineer</title>
+    <meta name="description" content="Senior Frontend Engineer with 17+ years building large-scale customer-facing platforms in aviation, banking and telecom with Angular, TypeScript and design systems. Based in Amstelveen, Netherlands.">
+    <meta name="author" content="Hajamohaideen Kudhbudeen">
+    <meta name="theme-color" content="#0a0a0c">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <meta name="description"
-            content="Porfolio template">
-        <meta name="keywords" content="Free, CSS Template">
-        <meta name="author" content="Hajamohaideen Kudhbudeen">
-        <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-        <link rel="manifest" href="img/favicon/site.webmanifest">
-        <link rel="stylesheet" href="css/main.css">
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-        <title>Hajamohaideen's portfolio</title>
-    </head>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hajamohaideen Kudhbudeen — Senior Frontend Engineer">
+    <meta property="og:description" content="17+ years in Angular, TypeScript and design systems. KLM Royal Dutch Airlines, Verizon, Discover Financial Services.">
+    <meta property="og:image" content="img/developer.jpg">
 
-    <body>
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
 
-        <header class="header" id="header">
-            <!-- Top fixed navbar -->
-            <nav class="navbar navbar-top navbar-expand-md navbar-dark header__navbar">
-                <div class="container-lg">
-                    <a class="navbar-brand" href="#">HAJAMOHAIDEEN KUDHBUDEEN</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarTopCollapsible" aria-controls="navbarTopCollapsible" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarTopCollapsible">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#header">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#about">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#work">Work</a>
-                            </li>
-                        
-                            <li class="nav-item">
-                                <a class="nav-link" href="pdf/HajamohaideenKudhbudeen.pdf" target="_blank">Resume</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ============================================================ nav -->
+    <header class="nav" id="nav">
+        <div class="wrap nav__inner">
+            <a class="nav__brand" href="#top" aria-label="Hajamohaideen Kudhbudeen, back to top">
+                <span class="nav__mark" aria-hidden="true">HK</span>
+                <span>Hajamohaideen K</span>
+            </a>
+
+            <nav class="nav__links" id="navLinks" aria-label="Primary">
+                <a class="nav__link" href="#about">About</a>
+                <a class="nav__link" href="#skills">Skills</a>
+                <a class="nav__link" href="#experience">Experience</a>
+                <a class="nav__link" href="#background">Background</a>
+                <a class="nav__link" href="#contact">Contact</a>
             </nav>
 
-
-            <!-- Centered content -->
-            <div class="header__content">
-                <div class="header__img-box">
-                    <img src="img/developer.jpg" alt="HAJAMOHAIDEEN" class="header__img">
-                </div>
-                <h1 class="heading-primary">
-                    <span class="heading-primary--main">HAJAMOHAIDEEN KUDHBUDEEN</span>
-                    <span class="heading-primary--sub">Senior Front End Developer</span>
-                </h1>
-                <div class="header__cta-box">
-                    <a href="#about" class="btn btn--full">About</a>
-                    <a href="#work" class="btn btn--ghost">Work</a>
-                </div>
+            <div class="nav__actions">
+                <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to light theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                </button>
+                <button class="icon-btn nav__toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
             </div>
+        </div>
+    </header>
 
+    <main id="main">
+        <!-- ======================================================= hero -->
+        <section class="hero" id="top">
+            <div class="wrap">
+                <div class="hero__grid">
+                    <div>
+                        <span class="badge">
+                            <span class="badge__dot" aria-hidden="true"></span>
+                            EU permanent resident &middot; no sponsorship required
+                        </span>
 
-            <!-- Absolute positioned social icons -->
-            <div class="header__social-icons social-icons">
-                <a href="https://github.com/yaseerhaja" target="_blank" class="social-icons__link">
-                    <svg class="icon social-icons__icon">
-                        <use xlink:href="img/SVG/symbol-defs.svg#icon-github"></use>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/hajamohaideenk" target="_blank" class="social-icons__link">
-                    <svg class="icon social-icons__icon">
-                        <use xlink:href="img/SVG/symbol-defs.svg#icon-linkedin"></use>
-                    </svg>
-                </a>
+                        <h1 class="hero__title">Hajamohaideen<br><span>Kudhbudeen</span></h1>
 
-            </div>
+                        <p class="hero__role">
+                            Senior Frontend Engineer <em>/</em> Angular <em>/</em> TypeScript <em>/</em> Design Systems
+                        </p>
 
-        </header>
+                        <p class="hero__lede">
+                            17+ years building large-scale customer-facing platforms in aviation, banking
+                            and telecom. I build the shared UI libraries, accessibility standards and
+                            AI-assisted tooling that let other teams ship faster.
+                        </p>
 
-        <section class="about" id="about">
-            <div class="container">
-                <h2 class="heading-secondary">About me</h2>
-                <div class="row justify-content-center">
-                    <div class="col-md-10 col-lg-8">
-                        <div class="about__content">
-                            <p>I am an enthusiastic Front End Developer with a deep passion for innovation and a proven track record of driving user engagement through scalable and responsive web solutions. My career spans over 12 years, during which I have honed my skills in Angular, JavaScript, TypeScript, and CI/CD pipelines. This extensive experience allows me to build and maintain robust, high-performance web applications that enhance user experiences and meet business goals.</p>
-                            <p>My professional journey has taken me through various roles in multidisciplinary Agile teams, where I have consistently prioritized quality and continuous improvement. I believe in the power of collaboration and the importance of staying at the forefront of technology trends to deliver cutting-edge solutions. Whether it's refining the user interface or optimizing backend processes, my goal is to ensure seamless, user-friendly applications that stand out in today's competitive digital landscape.</p>
-                            <p>One of my core strengths is my ability to adapt to new challenges and continuously learn. I am excited by the prospect of working on innovative projects that push the boundaries of what’s possible. I am committed to leveraging my expertise to contribute effectively and drive success in every project I undertake</p>
-                            <p>Let's collaborate to make a difference and shape the future together! Whether you're looking to develop a new application, improve an existing system, or explore new technological possibilities, I am eager to bring my skills and enthusiasm to your team. Together, we can create impactful and memorable digital experiences that resonate with users and achieve remarkable results</p>      
-                        </div>
-                        <div class="about__skills my-4">
-                            <h3 class="heading-tertiary">Technologies I know:</h3>
-                            <div class="about__skills-icons mt-2">
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-html5"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-css3"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-javascript"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-angular"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-jquery"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-mysql"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-bootstrap"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-sass"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-git"></use>
-                                </svg>
-                                <svg class="icon about__skills-icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-linux"></use>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="about__cta-box text-center">
-                    <a href="pdf/HajamohaideenKudhbudeen.pdf" target="_blank" class="btn btn--ghost">
-                        <svg class="icon btn__icon-left">
-                            <use xlink:href="img/SVG/symbol-defs.svg#icon-file-pdf"></use>
-                        </svg>
-                        Resume
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="work" id="work">
-
-            <div class="container">
-                <h2 class="heading-secondary">Things I've made</h2>
-
-                <ul class="nav nav-tabs justify-content-center mt-5 mb-4" id="workTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="projects-tab" data-toggle="tab" href="#projects" role="tab"
-                            aria-controls="projects" aria-selected="true">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="snippets-tab" data-toggle="tab" href="#snippets" role="tab"
-                            aria-controls="snippets" aria-selected="false">Snippets</a>
-                    </li>
-                
-
-                </ul>
-
-                <div class="tab-content">
-
-                    <div class="work__content work__content--projects tab-pane fade show active" id="projects"
-                        role="tabpanel" aria-labelledby="projects-tab">
-                        <div class="row justify-content-center">
-                            <div class="project-box col-sm-12 col-md-6 col-lg-4 mb-5">
-                                <div class="project">
-                                    <div class="project__img-box">
-                                        <img src="img/project-1.jpg" alt="Project 1" class="project__img img-fluid">
-                                    </div>
-
-                                    <div class="project__content-box">
-                                        <h3 class="heading-tertiary">Mission Mars</h3>
-                                        <p class="project__details">This projects aims to deliver different set of missions carrier over to Mars </p>
-                                
-                                        <div class="project__cta-box text-center">
-                                            
-                                            <a href="https://github.com/yaseerhaja/mission-mars" target="_blank" class="btn btn--full">
-                                                <svg class="icon btn__icon-left icon-earth">
-                                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-github"></use>
-                                                </svg>
-                                                Source</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="project-box col-sm-12 col-md-6 col-lg-4 mb-5">
-                                <div class="project">
-                                    <div class="project__img-box">
-                                        <img src="img/project-1.jpg" alt="Project 1" class="project__img img-fluid">
-                                    </div>
-
-                                    <div class="project__content-box">
-                                        <h3 class="heading-tertiary">Movie App</h3>
-                                        <p class="project__details">This projects aims to deliver different set of movies available for Users and provides more detailed description of it </p>
-                                
-                                        <div class="project__cta-box text-center">
-                                            
-                                            <a href="https://github.com/yaseerhaja/movie-app" target="_blank" class="btn btn--full">
-                                                <svg class="icon btn__icon-left icon-earth">
-                                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-github"></use>
-                                                </svg>
-                                                Source</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="project-box col-sm-12 col-md-6 col-lg-4 mb-5">
-                                <div class="project">
-                                    <div class="project__img-box">
-                                        <img src="img/project-1.jpg" alt="Project 1" class="project__img img-fluid">
-                                    </div>
-
-                                    <div class="project__content-box">
-                                        <h3 class="heading-tertiary">Adidas Pdp Application</h3>
-                                        <p class="project__details">This projects aims to deliver api-gateway, product-description-page-service, metadata-service
-, product-service, user-generated-content-service                                        </p>
-                                
-                                        <div class="project__cta-box text-center">
-                                            
-                                            <a href="https://github.com/yaseerhaja/adidas-pdp-app" target="_blank" class="btn btn--full">
-                                                <svg class="icon btn__icon-left icon-earth">
-                                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-github"></use>
-                                                </svg>
-                                                Source</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="project-box col-sm-12 col-md-6 col-lg-4 mb-5">
-                                <div class="project">
-                                    <div class="project__img-box">
-                                        <img src="img/project-1.jpg" alt="Project 1" class="project__img img-fluid">
-                                    </div>
-
-                                    <div class="project__content-box">
-                                        <h3 class="heading-tertiary">Bank Web Application</h3>
-                                        <p class="project__details">This projects aims to deliver ... </p>
-                                
-                                        <div class="project__cta-box text-center">
-                                            
-                                            <a href="https://github.com/yaseerhaja/bank-webapp" target="_blank" class="btn btn--full">
-                                                <svg class="icon btn__icon-left icon-earth">
-                                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-github"></use>
-                                                </svg>
-                                                Source</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="project-box col-sm-12 col-md-6 col-lg-4 mb-5">
-                                <div class="project">
-                                    <div class="project__img-box">
-                                        <img src="img/project-1.jpg" alt="Project 1" class="project__img img-fluid">
-                                    </div>
-
-                                    <div class="project__content-box">
-                                        <h3 class="heading-tertiary">Online Checkin Application</h3>
-                                        <p class="project__details">This projects aims to deliver ... </p>
-                                
-                                        <div class="project__cta-box text-center">
-                                            
-                                            <a href="https://github.com/yaseerhaja/online-checkin" target="_blank" class="btn btn--full">
-                                                <svg class="icon btn__icon-left icon-earth">
-                                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-github"></use>
-                                                </svg>
-                                                Source</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            
-                            <!-- <div class="col-12 mb-2 mt-n1 text-center"><a href="#" class="btn btn--full">Show all</a>
-                            </div> -->
-                        </div>
-                    </div>
-
-                    <div class="work__content work__content--snippets tab-pane fade" id="snippets" role="tabpanel"
-                        aria-labelledby="snippets-tab">
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-md-10 col-lg-8">
-                                <table class="table table-sm table-responsive-sm table-bordered table-striped my-5">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Technology</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td><a href="#">Mission Mars</a></td>
-                                            <td>React Framework</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td><a href="#">Movie Application</a></td>
-                                            <td>Angular Framework</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td><a href="#">Adidas Pdp Application</a></td>
-                                            <td>Angular Framework</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td><a href="#">Bank Web Application</a></td>
-                                            <td>Angular Framework</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td><a href="#">Online Checkin Application</a></td>
-                                            <td>Angular Framework</td>
-                                        </tr>
-                                    
-                                    </tbody>
-                                </table>
-
-                        
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </section>
-
-        <section class="counter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4 col-md-4 col-lg-4">
-                        <div class="counter__box">
-                            <div class="counter__icon-box">
-                                <svg class="icon counter__icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-embed"></use>
-                                </svg>
-                            </div>
-                            <span class="counter__count">2000</span>
-                            <p class="counter__title">Lines of code</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4">
-                        <div class="counter__box">
-                            <div class="counter__icon-box">
-                                <svg class="icon counter__icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-github"></use>
-                                </svg>
-                            </div>
-                            <span class="counter__count">05</span>
-                            <p class="counter__title">Projects done</p>
-                        </div>
-                    </div>
-                   
-                    <div class="col-sm-4 col-md-4 col-lg-4">
-                        <div class="counter__box">
-                            <div class="counter__icon-box">
-                                <svg class="icon counter__icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-sun"></use>
-                                </svg>
-                            </div>
-                            <span class="counter__count">14</span>
-                            <p class="counter__title">Years lived</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="contact" id="contact">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12  py-5 text-center mb-2">
-                        <h3 class="mb-4 heading-tertiary footer__social-heading">Stay connected</h3>
-                        <!-- Absolute positioned social icons -->
-                        <div class=" social-icons social-icons--lg">
-                            <a href="https://github.com/yaseerhaja" target="_blank" class="social-icons__link">
-                                <svg class="icon social-icons__icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-github"></use>
-                                </svg>
+                        <div class="hero__cta">
+                            <a class="btn btn--primary" href="pdf/HajamohaideenKudhbudeen.pdf" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                                Download resume
                             </a>
-                            <a href="https://www.linkedin.com/in/hajamohaideenk" target="_blank" class="social-icons__link">
-                                <svg class="icon social-icons__icon">
-                                    <use xlink:href="img/SVG/symbol-defs.svg#icon-linkedin"></use>
-                                </svg>
+                            <a class="btn btn--ghost" href="#contact">
+                                Get in touch
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                             </a>
-
                         </div>
+
+                        <p class="hero__meta">
+                            <span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                Amstelveen, Noord-Holland, Netherlands
+                            </span>
+                            <span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+                                yaseerhaja@gmail.com
+                            </span>
+                        </p>
+                    </div>
+
+                    <figure class="hero__portrait">
+                        <img src="img/developer.jpg" width="600" height="600"
+                             alt="Portrait of Hajamohaideen Kudhbudeen" fetchpriority="high">
+                    </figure>
+                </div>
+
+                <div class="stats">
+                    <div class="stat reveal">
+                        <div class="stat__value">17+</div>
+                        <div class="stat__label">Years in frontend engineering</div>
+                    </div>
+                    <div class="stat reveal">
+                        <div class="stat__value">30%</div>
+                        <div class="stat__label">Ancillary sales uplift from the KLM seatmap</div>
+                    </div>
+                    <div class="stat reveal">
+                        <div class="stat__value">WCAG 2.1 AA</div>
+                        <div class="stat__label">Component library standard, ARIA + screen reader tested</div>
+                    </div>
+                    <div class="stat reveal">
+                        <div class="stat__value">v16&ndash;21</div>
+                        <div class="stat__label">Angular versions shipped and migrated across</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class="footer">
-            <div class="container">
-                <div class="row justify-content-center ">
-                    <div class="col-12 mt-auto">
-                        <nav class="nav footer__nav justify-content-around">
-                            <a class="nav-link active" href="#">Home</a>
-                            <a class="nav-link" href="#work">Projects</a>
-                        </nav>
+        <!-- ======================================================= about -->
+        <section class="section" id="about">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="section__eyebrow">01 &mdash; About</span>
+                    <h2 class="section__title">What I actually do</h2>
+                </div>
+
+                <div class="about">
+                    <div class="about__body reveal">
+                        <p>
+                            I'm a Senior Frontend Engineer with <strong>17+ years</strong> building
+                            large-scale customer-facing platforms in aviation, banking and telecom
+                            with <strong>Angular, React, TypeScript, Node.js and GraphQL</strong>.
+                        </p>
+                        <p>
+                            My specialty is shared UI libraries and design systems in
+                            <strong>Nx monorepos</strong> &mdash; component architecture, accessibility,
+                            and the tooling that lets other teams ship faster: CDK test harnesses,
+                            Storybook infrastructure, and AI-assisted developer workflows.
+                        </p>
+                        <p>
+                            I own technical direction end to end, from <strong>ADRs and distribution
+                            strategy</strong> to the migration paths that move a codebase forward,
+                            working closely with cross-functional teams and stakeholders.
+                        </p>
+                    </div>
+
+                    <div class="facts reveal">
+                        <div class="fact"><span class="fact__k">Based in</span><span class="fact__v">Amstelveen, NL</span></div>
+                        <div class="fact"><span class="fact__k">Work status</span><span class="fact__v">EU permanent resident</span></div>
+                        <div class="fact"><span class="fact__k">Current client</span><span class="fact__v">KLM Royal Dutch Airlines</span></div>
+                        <div class="fact"><span class="fact__k">Focus</span><span class="fact__v">Design systems &amp; accessibility</span></div>
+                        <div class="fact"><span class="fact__k">Education</span><span class="fact__v">B.Tech, Computer Science</span></div>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </footer>
+        <!-- ====================================================== skills -->
+        <section class="section" id="skills">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="section__eyebrow">02 &mdash; Skills</span>
+                    <h2 class="section__title">Toolkit</h2>
+                    <p class="section__note">Grouped by what I use them for, not by how long the list looks.</p>
+                </div>
 
+                <div class="skills">
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+                            <h3>Frontend</h3>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Angular v16&ndash;21</span><span class="tag">React</span>
+                            <span class="tag">Vue.js</span><span class="tag">TypeScript</span>
+                            <span class="tag">RxJS</span><span class="tag">Signals</span>
+                            <span class="tag">NgRx / Redux</span><span class="tag">HTML5</span>
+                            <span class="tag">CSS3 / SCSS</span><span class="tag">Web Components</span>
+                            <span class="tag">Next.js</span>
+                        </div>
+                    </article>
 
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+                            <h3>Architecture &amp; Design Systems</h3>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Nx monorepos</span><span class="tag">Component library design</span>
+                            <span class="tag">Angular Material / CDK</span><span class="tag">Storybook</span>
+                            <span class="tag">Figma</span><span class="tag">Webpack / Vite</span>
+                            <span class="tag">Core Web Vitals</span>
+                        </div>
+                    </article>
 
-        <script src="js/vendors/jquery/jquery.min.js"></script>
-        <script src="js/vendors/waypoints/jquery.waypoints.min.js"></script>
-        <script src="js/vendors/popper/popper.min.js"></script>
-        <script src="js/vendors/bootstrap/bootstrap.min.js"></script>
-        <script src="js/script.js"></script>
-    </body>
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5l-1.9-4.6L5.5 9l4.6-1.4L12 3z"/><path d="M18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8L18 16z"/></svg></span>
+                            <h3>AI Engineering</h3>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Custom agents</span><span class="tag">Prompt engineering</span>
+                            <span class="tag">Reusable skill packages</span><span class="tag">GitHub Copilot customization</span>
+                            <span class="tag">AI-assisted migration</span><span class="tag">AI code review workflows</span>
+                        </div>
+                    </article>
 
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
+                            <h3>Accessibility</h3>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">WCAG 2.1 AA</span><span class="tag">ARIA authoring practices</span>
+                            <span class="tag">VoiceOver</span><span class="tag">NVDA</span>
+                        </div>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+                            <h3>Backend &amp; Data</h3>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Node.js</span><span class="tag">REST</span>
+                            <span class="tag">GraphQL</span><span class="tag">MongoDB</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.2 9.5 4.25 4.25 0 0 0 7 19h10.5z"/></svg></span>
+                            <h3>Cloud &amp; DevOps</h3>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Azure</span><span class="tag">Docker</span>
+                            <span class="tag">Kubernetes</span><span class="tag">CI/CD pipelines</span>
+                            <span class="tag">GitHub Actions</span>
+                        </div>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
+                            <h3>Testing &amp; Quality</h3>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Playwright</span><span class="tag">Jest</span>
+                            <span class="tag">CDK Component Harness</span><span class="tag">TDD</span>
+                            <span class="tag">SonarQube</span><span class="tag">Optimizely</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== experience -->
+        <section class="section" id="experience">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="section__eyebrow">03 &mdash; Experience</span>
+                    <h2 class="section__title">Where I've shipped</h2>
+                    <p class="section__note">Aviation, telecom and financial services &mdash; consistently on the platform side, close to real customers.</p>
+                </div>
+
+                <div class="timeline">
+                    <article class="role reveal">
+                        <div class="role__head">
+                            <div>
+                                <h3 class="role__title">Senior Frontend Engineer</h3>
+                                <p class="role__org">Tata Consultancy Services, Netherlands &middot; Client: <b>KLM Royal Dutch Airlines</b></p>
+                            </div>
+                            <span class="role__period">06/2015 &mdash; Present</span>
+                        </div>
+                        <ul class="role__list">
+                            <li>Architected scalable Angular/TypeScript components for the <b>KLM BLUEWEB booking portal</b>, increasing user engagement by 30%.</li>
+                            <li>Led the <b>SEATMAP</b> feature in the booking journey, driving a 30% uplift in ancillary sales (seats, bags, add-ons).</li>
+                            <li>Built a reusable, <b>WCAG 2.1 AA / WAI-ARIA-compliant</b> Angular component library &mdash; cutting UI rework by 30%, reducing code volume by 45%, and extending portal access to assistive-technology users.</li>
+                            <li>Designed <b>Node.js services, GraphQL schemas and REST APIs</b> that eliminated over-fetching and improved response times under high-traffic production load.</li>
+                            <li>Introduced automated unit and E2E testing (Jest, Playwright) alongside Optimizely experiments, catching regressions earlier and raising release confidence.</li>
+                            <li>Owned frontend code review standards and contributed to CI/CD workflows (Docker, Kubernetes, Azure), shortening release cycles.</li>
+                            <li>Built <b>autonomous remediation agents</b> that pull issues from SonarQube and Dynatrace, then run analysis, fix, test and PR creation &mdash; closing the loop from detection to reviewable change without manual intervention.</li>
+                            <li>Created a <b>Figma-to-code component generation agent</b> using MCP, driving TDD component builds directly from design files against codified design-system principles.</li>
+                            <li>Authored reusable <b>AI skill packages for the Aero design system</b> (tokens, typography, iconography, architecture principles) and PR documentation, giving agents consistent context and improving change observability across the team.</li>
+                        </ul>
+                    </article>
+
+                    <article class="role reveal">
+                        <div class="role__head">
+                            <div>
+                                <h3 class="role__title">Front End Lead Developer</h3>
+                                <p class="role__org">HCL Tech, India &middot; Client: <b>Verizon (US)</b></p>
+                            </div>
+                            <span class="role__period">06/2014 &mdash; 06/2015</span>
+                        </div>
+                        <ul class="role__list">
+                            <li>Led development of a <b>real-time interactive TV guide SPA</b> for Verizon's digital channels, lifting customer engagement by 22%.</li>
+                            <li>Built the client-side architecture in AngularJS with RequireJS module loading, handling live schedule data across a large channel lineup.</li>
+                            <li>Implemented a responsive layout system with Sass and media queries, cutting page load times through asset optimization and reduced render-blocking.</li>
+                            <li>Established automated testing with Karma/Jasmine and Protractor end-to-end coverage, catching regressions before release.</li>
+                            <li>Mentored junior engineers and ran code reviews covering JavaScript patterns, testing and browser performance, raising the team's baseline quality.</li>
+                            <li>Owned production deployments with rollback and risk-management strategies, keeping downtime minimal.</li>
+                        </ul>
+                    </article>
+
+                    <article class="role reveal">
+                        <div class="role__head">
+                            <div>
+                                <h3 class="role__title">Front End Developer</h3>
+                                <p class="role__org">Cognizant, Chennai, India &middot; Client: <b>Discover Financial Services (US)</b></p>
+                            </div>
+                            <span class="role__period">11/2010 &mdash; 06/2014</span>
+                        </div>
+                        <ul class="role__list">
+                            <li>Refactored legacy frontend codebases into modular JavaScript architectures with RequireJS and Backbone, reducing technical debt by 20%.</li>
+                            <li>Integrated RESTful APIs with frontend applications, decreasing time-to-market for new customer-facing features by 15%.</li>
+                            <li>Migrated multiple applications to responsive design, increasing mobile usage by 60% for a large US financial services platform.</li>
+                            <li>Resolved cross-browser compatibility issues with polyfills and targeted fixes across the IE-era browser matrix, cutting browser-related complaints by 30%.</li>
+                        </ul>
+                    </article>
+
+                    <article class="role reveal">
+                        <div class="role__head">
+                            <div>
+                                <h3 class="role__title">Junior Front End Developer</h3>
+                                <p class="role__org">HCL Infosystems, India &middot; Client: <b>BSNL, Puducherry</b></p>
+                            </div>
+                            <span class="role__period">08/2008 &mdash; 11/2010</span>
+                        </div>
+                        <ul class="role__list">
+                            <li>Migrated legacy Flash games to <b>HTML5 Canvas</b>, delivering a sustainable cross-browser gaming experience for BSNL users.</li>
+                            <li>Optimized asset delivery with CDN distribution, image sprites and compression, improving page and game load times by 15%.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== background -->
+        <section class="section" id="background">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="section__eyebrow">04 &mdash; Background</span>
+                    <h2 class="section__title">Education, languages &amp; awards</h2>
+                </div>
+
+                <div class="cards3">
+                    <article class="panel reveal">
+                        <h3>Education</h3>
+                        <ul class="panel__list">
+                            <li><b>Bachelor of Technology</b></li>
+                            <li>Specialization in Computer Science and Engineering</li>
+                            <li>Rajiv Gandhi College of Engineering and Technology, Puducherry, India</li>
+                            <li style="color:var(--fg-subtle)">06/2004 &mdash; 06/2008</li>
+                        </ul>
+                    </article>
+
+                    <article class="panel reveal">
+                        <h3>Languages</h3>
+                        <ul class="panel__list">
+                            <li>
+                                <b>Tamil</b> &mdash; Native
+                                <span class="meter"><i style="width:100%"></i></span>
+                            </li>
+                            <li>
+                                <b>English</b> &mdash; Proficient
+                                <span class="meter"><i style="width:90%"></i></span>
+                            </li>
+                            <li>
+                                <b>Dutch</b> &mdash; Intermediate (A2)
+                                <span class="meter"><i style="width:45%"></i></span>
+                            </li>
+                            <li>
+                                <b>French</b> &mdash; Beginner (A1)
+                                <span class="meter"><i style="width:22%"></i></span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="panel reveal">
+                        <h3>Awards</h3>
+                        <ul class="panel__list">
+                            <li><b>Star Award</b> &mdash; Cognizant</li>
+                            <li><b>Live Wire Award</b> &mdash; HCL Technology</li>
+                            <li><b>Pat on the Back Award</b> &mdash; Discover Financial Services</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================== contact -->
+        <section class="section" id="contact">
+            <div class="wrap">
+                <div class="contact">
+                    <div class="reveal">
+                        <span class="section__eyebrow">05 &mdash; Contact</span>
+                        <h2 class="contact__title">Let's build something<br>worth shipping.</h2>
+                        <p class="contact__note">
+                            Open to senior and lead frontend roles in the Netherlands and remote-EU.
+                            EU permanent resident &mdash; no sponsorship required.
+                        </p>
+                        <div class="hero__cta">
+                            <a class="btn btn--primary" href="mailto:yaseerhaja@gmail.com">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+                                Email me
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact__links reveal">
+                        <a class="contact-link" href="mailto:yaseerhaja@gmail.com">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+                            <span>
+                                <span class="contact-link__k">Email</span>
+                                <span class="contact-link__v">yaseerhaja@gmail.com</span>
+                            </span>
+                            <svg class="contact-link__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+
+                        <a class="contact-link" href="tel:+31619807460">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+                            <span>
+                                <span class="contact-link__k">Phone</span>
+                                <span class="contact-link__v">+31 6 19807460</span>
+                            </span>
+                            <svg class="contact-link__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+
+                        <a class="contact-link" href="https://www.linkedin.com/in/hajamohaideenk/" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.06c.53-1 1.83-2.06 3.76-2.06 4.02 0 4.76 2.65 4.76 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></svg>
+                            <span>
+                                <span class="contact-link__k">LinkedIn</span>
+                                <span class="contact-link__v">/in/hajamohaideenk</span>
+                            </span>
+                            <svg class="contact-link__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                        </a>
+
+                        <a class="contact-link" href="https://github.com/yaseerhaja" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                            <span>
+                                <span class="contact-link__k">GitHub</span>
+                                <span class="contact-link__v">github.com/yaseerhaja</span>
+                            </span>
+                            <svg class="contact-link__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap footer__inner">
+            <span>&copy; <span id="year">2026</span> Hajamohaideen Kudhbudeen</span>
+            <span>Built with plain HTML, CSS and JavaScript.</span>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
 </html>
