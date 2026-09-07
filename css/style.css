@@ -1193,6 +1193,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav__link { padding: 15px var(--space-3); border-radius: var(--radius-sm); }
   .nav__link::after { left: var(--space-3); right: auto; width: 22px; }
   .nav__toggle { display: grid; }
+  /* a 40px fade eats too much of a 280px card on a narrow screen */
+  .carousel__viewport {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+  }
   .section { padding-block: var(--space-6); }
   .role { padding: var(--space-4); }
   .timeline { padding-left: 28px; }
