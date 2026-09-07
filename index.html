@@ -37,6 +37,7 @@
             <nav class="nav__links" id="navLinks" aria-label="Primary">
                 <a class="nav__link" href="#about">About</a>
                 <a class="nav__link" href="#skills">Skills</a>
+                <a class="nav__link" href="#work">Work</a>
                 <a class="nav__link" href="#experience">Experience</a>
                 <a class="nav__link" href="#background">Background</a>
                 <a class="nav__link" href="#contact">Contact</a>
@@ -342,11 +343,169 @@
             </div>
         </section>
 
+        <!-- ======================================================== work -->
+        <section class="section" id="work">
+            <div class="wrap">
+                <div class="section__head reveal">
+                    <span class="section__eyebrow">03 &mdash; Work</span>
+                    <h2 class="section__title">Selected repositories</h2>
+                    <p class="section__note">Side projects and build-outs from <a class="link" href="https://github.com/yaseerhaja" target="_blank" rel="noopener">github.com/yaseerhaja</a> &mdash; mostly full-stack experiments in Angular, Vue and Node.</p>
+                </div>
+
+                <div class="work">
+                    <article class="work-card reveal">
+                        <div class="work-card__head">
+                            <span class="work-card__icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                            </span>
+                            <h3><a class="work-card__link" href="https://github.com/yaseerhaja/cus-transaction-app" target="_blank" rel="noopener">cus-transaction-app</a></h3>
+                            <svg class="work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                        </div>
+                        <p class="work-card__desc">
+                            Full-stack customer transaction app: Angular front end against a Node.js
+                            GraphQL API, with Bruno API tests, Playwright end-to-end coverage and a
+                            deployment pipeline. The API lives in
+                            <a class="link" href="https://github.com/yaseerhaja/cus-transaction-app-server" target="_blank" rel="noopener">cus-transaction-app-server</a>.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Angular</span><span class="tag">Node.js</span>
+                            <span class="tag">GraphQL</span><span class="tag">Playwright</span>
+                        </div>
+                        <p class="work-card__foot">
+                            <span class="lang"><i class="lang__dot lang__dot--ts" aria-hidden="true"></i>TypeScript</span>
+                        </p>
+                    </article>
+
+                    <article class="work-card reveal">
+                        <div class="work-card__head">
+                            <span class="work-card__icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                            </span>
+                            <h3><a class="work-card__link" href="https://github.com/yaseerhaja/proactive-technical-assessment-hajamohaideen" target="_blank" rel="noopener">proactive-technical-assessment</a></h3>
+                            <svg class="work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                        </div>
+                        <p class="work-card__desc">
+                            Nuxt application built with Nuxt UI and API Party, wired up with automated
+                            testing and a deploy pipeline. Desktop and mobile demo recordings are linked
+                            from the repo.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Nuxt</span><span class="tag">Vue</span>
+                            <span class="tag">Nuxt UI</span><span class="tag">CI/CD</span>
+                        </div>
+                        <p class="work-card__foot">
+                            <span class="lang"><i class="lang__dot lang__dot--vue" aria-hidden="true"></i>Vue</span>
+                            <a class="work-card__demo" href="https://proactive-technical-assessment-hajamohaideen.vercel.app" target="_blank" rel="noopener">
+                                Live demo
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                            </a>
+                        </p>
+                    </article>
+
+                    <article class="work-card reveal">
+                        <div class="work-card__head">
+                            <span class="work-card__icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                            </span>
+                            <h3><a class="work-card__link" href="https://github.com/yaseerhaja/adidas-pdp-app" target="_blank" rel="noopener">adidas-pdp-app</a></h3>
+                            <svg class="work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                        </div>
+                        <p class="work-card__desc">
+                            Product detail page split into a Node microservice architecture: an API
+                            gateway in front of product, metadata, product-description and
+                            user-generated-content services, with the UI as its own application.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Node.js</span><span class="tag">Microservices</span>
+                            <span class="tag">API gateway</span>
+                        </div>
+                        <p class="work-card__foot">
+                            <span class="lang"><i class="lang__dot lang__dot--js" aria-hidden="true"></i>JavaScript</span>
+                        </p>
+                    </article>
+
+                    <article class="work-card reveal">
+                        <div class="work-card__head">
+                            <span class="work-card__icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                            </span>
+                            <h3><a class="work-card__link" href="https://github.com/yaseerhaja/online-checkin" target="_blank" rel="noopener">online-checkin</a></h3>
+                            <svg class="work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                        </div>
+                        <p class="work-card__desc">
+                            Airline online check-in flow as an Angular 15 single-page app, with routed
+                            pages and a GraphQL client module handling the data layer.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Angular 15</span><span class="tag">GraphQL</span>
+                            <span class="tag">SCSS</span>
+                        </div>
+                        <p class="work-card__foot">
+                            <span class="lang"><i class="lang__dot lang__dot--ts" aria-hidden="true"></i>TypeScript</span>
+                        </p>
+                    </article>
+
+                    <article class="work-card reveal">
+                        <div class="work-card__head">
+                            <span class="work-card__icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                            </span>
+                            <h3><a class="work-card__link" href="https://github.com/yaseerhaja/mission-mars" target="_blank" rel="noopener">mission-mars</a></h3>
+                            <svg class="work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                        </div>
+                        <p class="work-card__desc">
+                            React and TypeScript app structured into components, pages and a central
+                            store &mdash; the one repo here that has picked up a star from someone else.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">React</span><span class="tag">TypeScript</span>
+                            <span class="tag">State store</span>
+                        </div>
+                        <p class="work-card__foot">
+                            <span class="lang"><i class="lang__dot lang__dot--ts" aria-hidden="true"></i>TypeScript</span>
+                            <span class="lang">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="14" height="14"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9z"/></svg>
+                                1
+                            </span>
+                        </p>
+                    </article>
+
+                    <article class="work-card reveal">
+                        <div class="work-card__head">
+                            <span class="work-card__icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                            </span>
+                            <h3><a class="work-card__link" href="https://github.com/yaseerhaja/bank-webapp" target="_blank" rel="noopener">bank-webapp</a></h3>
+                            <svg class="work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                        </div>
+                        <p class="work-card__desc">
+                            Banking front end as an Angular 15 single-page app, organised around routed
+                            feature pages and component-scoped SCSS.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Angular 15</span><span class="tag">SCSS</span>
+                            <span class="tag">Routing</span>
+                        </div>
+                        <p class="work-card__foot">
+                            <span class="lang"><i class="lang__dot lang__dot--ts" aria-hidden="true"></i>TypeScript</span>
+                        </p>
+                    </article>
+                </div>
+
+                <p class="work__more reveal">
+                    <a class="btn btn--ghost" href="https://github.com/yaseerhaja?tab=repositories" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                        <span>All repositories on GitHub</span>
+                    </a>
+                </p>
+            </div>
+        </section>
+
         <!-- ================================================== experience -->
         <section class="section" id="experience">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">03 &mdash; Experience</span>
+                    <span class="section__eyebrow">04 &mdash; Experience</span>
                     <h2 class="section__title">Where I've shipped</h2>
                     <p class="section__note">Aviation, telecom and financial services &mdash; consistently on the platform side, close to real customers.</p>
                 </div>
@@ -434,7 +593,7 @@
         <section class="section" id="background">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">04 &mdash; Background</span>
+                    <span class="section__eyebrow">05 &mdash; Background</span>
                     <h2 class="section__title">Education, languages &amp; awards</h2>
                 </div>
 
@@ -488,7 +647,7 @@
             <div class="wrap">
                 <div class="contact">
                     <div class="reveal">
-                        <span class="section__eyebrow">05 &mdash; Contact</span>
+                        <span class="section__eyebrow">06 &mdash; Contact</span>
                         <h2 class="contact__title">Let's build something<br>worth shipping.</h2>
                         <p class="contact__note">
                             Open to senior and lead frontend roles in the Netherlands and remote-EU.

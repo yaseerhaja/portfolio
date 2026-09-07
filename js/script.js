@@ -316,7 +316,7 @@
     );
 
     /* siblings that enter together get a small cascade */
-    var groups = document.querySelectorAll('.stats, .skills, .cards3, .facts, .contact__links');
+    var groups = document.querySelectorAll('.stats, .skills, .work, .cards3, .facts, .contact__links');
     Array.prototype.forEach.call(groups, function (group) {
       var kids = group.querySelectorAll(':scope > .reveal');
       Array.prototype.forEach.call(kids, function (kid, i) {
@@ -334,7 +334,7 @@
 
   /* --------------------------------------------- pointer-tracked sheen */
   if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !reduceMotion) {
-    var cards = document.querySelectorAll('.skill-card');
+    var cards = document.querySelectorAll('.skill-card, .work-card');
     Array.prototype.forEach.call(cards, function (card) {
       card.addEventListener(
         'pointermove',
