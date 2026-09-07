@@ -348,6 +348,175 @@
     });
   }
 
+  /* ------------------------------------------------------- work carousel */
+  /* Continuous circular marquee. The original cards are cloned until the
+     track is at least twice the viewport, then the offset wraps by one
+     set width — so the loop has no seam and no "rewind" jump. Falls back
+     to the plain grid under reduced motion or if anything is missing. */
+  (function () {
+    var frame = document.getElementById('workCarousel');
+    var viewport = document.getElementById('workViewport');
+    var track = document.getElementById('workTrack');
+    if (!frame || !viewport || !track || reduceMotion) return;
+
+    var originals = Array.prototype.slice.call(track.children);
+    if (originals.length < 2) return;
+
+    frame.classList.add('is-live');
+
+    var setWidth = 0;
+    var step = 0;
+    var x = 0;
+    var target = 0;
+    var paused = false;
+    var pausedByUser = false;
+    var dragging = false;
+    var dragId = null;
+    var lastPointerX = 0;
+    var SPEED = 38; /* px per second */
+
+    function clearClones() {
+      Array.prototype.slice.call(track.querySelectorAll('[data-clone]')).forEach(function (el) {
+        track.removeChild(el);
+      });
+    }
+
+    function gapWidth() {
+      var g = parseFloat(getComputedStyle(track).columnGap);
+      return isNaN(g) ? 0 : g;
+    }
+
+    function measure() {
+      clearClones();
+
+      var gap = gapWidth();
+      setWidth = originals.reduce(function (sum, el) {
+        return sum + el.getBoundingClientRect().width + gap;
+      }, 0);
+      step = originals[0].getBoundingClientRect().width + gap;
+
+      /* enough copies to cover the viewport plus one full set */
+      var needed = Math.ceil((viewport.getBoundingClientRect().width + setWidth) / setWidth);
+      for (var i = 0; i < needed; i++) {
+        originals.forEach(function (el) {
+          var copy = el.cloneNode(true);
+          copy.setAttribute('data-clone', '');
+          copy.setAttribute('aria-hidden', 'true');
+          /* clones must not be tab stops or duplicate ids */
+          copy.removeAttribute('id');
+          Array.prototype.slice.call(copy.querySelectorAll('a, button, [id]')).forEach(function (node) {
+            node.removeAttribute('id');
+            if (node.tagName === 'A' || node.tagName === 'BUTTON') node.setAttribute('tabindex', '-1');
+          });
+          track.appendChild(copy);
+        });
+      }
+
+      x = wrap(x);
+      target = x;
+      draw();
+    }
+
+    function wrap(v) {
+      if (!setWidth) return v;
+      while (v <= -setWidth) v += setWidth;
+      while (v > 0) v -= setWidth;
+      return v;
+    }
+
+    function draw() {
+      track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+    }
+
+    var last = 0;
+
+    function tick(now) {
+      var dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+      last = now;
+
+      if (!paused && !pausedByUser && !dragging && !document.hidden) {
+        target -= SPEED * dt;
+      }
+
+      /* ease toward the target so button nudges glide instead of jumping */
+      x += (target - x) * (dragging ? 1 : 0.14);
+
+      if (target <= -setWidth) {
+        target += setWidth;
+        x += setWidth;
+      } else if (target > 0) {
+        target -= setWidth;
+        x -= setWidth;
+      }
+
+      draw();
+      requestAnimationFrame(tick);
+    }
+
+    /* pause while a human is looking at or touching a card */
+    frame.addEventListener('pointerenter', function () { paused = true; });
+    frame.addEventListener('pointerleave', function () { paused = false; });
+    frame.addEventListener('focusin', function () { paused = true; });
+    frame.addEventListener('focusout', function () { paused = false; });
+
+    var prev = document.getElementById('workPrev');
+    var next = document.getElementById('workNext');
+    var pause = document.getElementById('workPause');
+
+    if (prev) prev.addEventListener('click', function () { target += step; });
+    if (next) next.addEventListener('click', function () { target -= step; });
+    if (pause) {
+      pause.addEventListener('click', function () {
+        pausedByUser = !pausedByUser;
+        pause.setAttribute('aria-pressed', String(pausedByUser));
+        pause.setAttribute('aria-label', pausedByUser ? 'Play the carousel' : 'Pause the carousel');
+      });
+    }
+
+    /* drag to scrub */
+    viewport.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      dragging = true;
+      dragId = e.pointerId;
+      lastPointerX = e.clientX;
+      viewport.setPointerCapture(dragId);
+    });
+
+    viewport.addEventListener('pointermove', function (e) {
+      if (!dragging || e.pointerId !== dragId) return;
+      var dx = e.clientX - lastPointerX;
+      lastPointerX = e.clientX;
+      if (Math.abs(dx) > 2) frame.classList.add('is-dragging');
+      target += dx;
+      x += dx;
+    });
+
+    function endDrag(e) {
+      if (!dragging || (e && e.pointerId !== dragId)) return;
+      dragging = false;
+      if (dragId !== null && viewport.hasPointerCapture(dragId)) {
+        viewport.releasePointerCapture(dragId);
+      }
+      dragId = null;
+      /* let the click through only if the pointer barely moved */
+      setTimeout(function () { frame.classList.remove('is-dragging'); }, 0);
+    }
+
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(measure, 150);
+    });
+
+    measure();
+    /* widths shift once the webfonts land */
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    requestAnimationFrame(tick);
+  })();
+
   /* ------------------------------------------------- copy to clipboard */
   /* The mailto: button next to this one needs a mail client to do
      anything; this is the fallback that always works. */
