@@ -127,6 +127,82 @@
     });
   }
 
+  /* ---------------------------------------------------- typewriter */
+  /* The animated span is aria-hidden; a visually-hidden sibling carries
+     the full list for screen readers, and the markup ships with the
+     first word already in place for no-JS readers. */
+  var typer = document.getElementById('typewriter');
+
+  if (typer) {
+    var out = typer.querySelector('.typewriter__text');
+    var words = (typer.getAttribute('data-words') || '').split('|').filter(Boolean);
+
+    if (words.length && out) {
+      if (reduceMotion) {
+        out.textContent = words.join(' / ');
+      } else {
+        var wi = 0;
+        var ci = 0;
+        var deleting = false;
+        var timer;
+
+        /* hold the widest word's width so the line never reflows */
+        var sizer = document.createElement('span');
+        sizer.className = 'typewriter__text';
+        sizer.style.position = 'absolute';
+        sizer.style.visibility = 'hidden';
+        sizer.style.whiteSpace = 'pre';
+        typer.appendChild(sizer);
+        var widest = 0;
+        words.forEach(function (w) {
+          sizer.textContent = w;
+          widest = Math.max(widest, sizer.getBoundingClientRect().width);
+        });
+        typer.removeChild(sizer);
+        out.style.display = 'inline-block';
+        out.style.minWidth = Math.ceil(widest) + 'px';
+
+        var step = function () {
+          var word = words[wi];
+
+          if (!deleting) {
+            ci++;
+            out.textContent = word.slice(0, ci);
+            if (ci === word.length) {
+              deleting = true;
+              timer = setTimeout(step, 2600);
+              return;
+            }
+            timer = setTimeout(step, 105);
+          } else {
+            ci--;
+            out.textContent = word.slice(0, ci);
+            if (ci === 0) {
+              deleting = false;
+              wi = (wi + 1) % words.length;
+              timer = setTimeout(step, 520);
+              return;
+            }
+            timer = setTimeout(step, 55);
+          }
+        };
+
+        /* don't burn frames while the tab is in the background */
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) {
+            clearTimeout(timer);
+          } else {
+            timer = setTimeout(step, 400);
+          }
+        });
+
+        ci = words[0].length;
+        deleting = true;
+        timer = setTimeout(step, 2200);
+      }
+    }
+  }
+
   /* -------------------------------------------------- sticky nav state */
   var nav = document.getElementById('nav');
   var navProgress = document.getElementById('navProgress');
@@ -268,6 +344,69 @@
         },
         { passive: true }
       );
+    });
+  }
+
+  /* ------------------------------------------------- copy to clipboard */
+  /* The mailto: button next to this one needs a mail client to do
+     anything; this is the fallback that always works. */
+  var copyBtn = document.getElementById('copyEmail');
+  var copyStatus = document.getElementById('copyStatus');
+
+  function legacyCopy(text) {
+    var field = document.createElement('textarea');
+    field.value = text;
+    field.setAttribute('readonly', '');
+    field.style.position = 'fixed';
+    field.style.top = '-1000px';
+    document.body.appendChild(field);
+    field.select();
+    var ok = false;
+    try {
+      ok = document.execCommand('copy');
+    } catch (e) {
+      ok = false;
+    }
+    document.body.removeChild(field);
+    return ok;
+  }
+
+  if (copyBtn) {
+    var label = copyBtn.querySelector('.btn__label');
+    var idle = label ? label.textContent : '';
+    var resetTimer;
+
+    var settle = function (ok, value) {
+      if (label) label.textContent = ok ? 'Copied' : 'Copy blocked';
+      copyBtn.classList.toggle('is-done', ok);
+      if (copyStatus) {
+        copyStatus.textContent = ok
+          ? value + ' copied to clipboard'
+          : 'Copy failed. The address is ' + value;
+      }
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(function () {
+        if (label) label.textContent = idle;
+        copyBtn.classList.remove('is-done');
+        if (copyStatus) copyStatus.textContent = '';
+      }, 2400);
+    };
+
+    copyBtn.addEventListener('click', function () {
+      var value = copyBtn.getAttribute('data-copy') || '';
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(
+          function () {
+            settle(true, value);
+          },
+          function () {
+            settle(legacyCopy(value), value);
+          }
+        );
+      } else {
+        settle(legacyCopy(value), value);
+      }
     });
   }
 
