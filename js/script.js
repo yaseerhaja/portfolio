@@ -159,8 +159,9 @@
           widest = Math.max(widest, sizer.getBoundingClientRect().width);
         });
         typer.removeChild(sizer);
-        out.style.display = 'inline-block';
-        out.style.minWidth = Math.ceil(widest) + 'px';
+        /* reserve on the wrapper, not the text — the text box has to
+           shrink with its content or the caret can't follow it */
+        typer.style.minWidth = Math.ceil(widest) + 8 + 'px';
 
         var step = function () {
           var word = words[wi];
