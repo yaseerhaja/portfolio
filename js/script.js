@@ -463,8 +463,14 @@
     var next = document.getElementById('workNext');
     var pause = document.getElementById('workPause');
 
-    if (prev) prev.addEventListener('click', function () { target += step; });
-    if (next) next.addEventListener('click', function () { target -= step; });
+    /* snap to a card boundary so the card lands flush with the frame
+       instead of stopping wherever the drift happened to be */
+    function nudge(dir) {
+      target = Math.round((target + dir * step) / step) * step;
+    }
+
+    if (prev) prev.addEventListener('click', function () { nudge(1); });
+    if (next) next.addEventListener('click', function () { nudge(-1); });
     if (pause) {
       pause.addEventListener('click', function () {
         pausedByUser = !pausedByUser;
