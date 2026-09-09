@@ -422,6 +422,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--glow-b);
 }
 
+.hero__scrub { will-change: transform, opacity; }
+
 .hero__grid {
   position: relative;
   display: grid;
@@ -676,18 +678,32 @@ ul { margin: 0; padding: 0; list-style: none; }
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-dasharray: 560;
-  stroke-dashoffset: 560;
-  transition: stroke-dashoffset 1200ms var(--ease) 320ms;
+  stroke-dashoffset: calc(560 * (1 - var(--bp, 1)));
 }
-.is-in .info-bracket { stroke-dashoffset: 0; }
 
+/* scroll-scrubbed: the script writes --rp (0-1) per row every frame, so the
+   layers assemble in step with the scroll rather than on a single trigger */
 .info-row {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 640ms var(--ease), transform 640ms var(--ease);
-  transition-delay: var(--d, 0ms);
+  opacity: var(--rp, 1);
+  transform: translateY(calc((1 - var(--rp, 1)) * 26px));
 }
-.is-in .info-row { opacity: 1; transform: none; }
+.info-row .info-card,
+.info-row .info-panel {
+  transition: stroke var(--dur) var(--ease), fill var(--dur) var(--ease);
+}
+.info-row.is-active .info-card { stroke: var(--accent-line); }
+
+/* the stage is tall; the diagram pins inside it while the layers land */
+.stage { position: relative; }
+.stage__inner { position: relative; }
+
+@media (min-width: 861px) {
+  .stage.is-pinned { height: 230vh; }
+  .stage.is-pinned .stage__inner {
+    position: sticky;
+    top: 108px;
+  }
+}
 
 /* --------------------------------------------------------------- skills */
 .skills {
@@ -1227,6 +1243,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .btn::after { display: none; }
   .info-row { opacity: 1; transform: none; }
   .info-bracket { stroke-dashoffset: 0; }
+  .stage.is-pinned { height: auto; }
+  .stage.is-pinned .stage__inner { position: static; }
   .typewriter__caret { display: none; }
 }
 

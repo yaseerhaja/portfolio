@@ -138,7 +138,7 @@
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">01 &mdash; About</span>
-                    <h2 class="section__title">What I actually do</h2>
+                    <h2 class="section__title" data-split>What I actually do</h2>
                 </div>
 
                 <div class="about">
@@ -177,11 +177,13 @@
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">02 &mdash; Skills</span>
-                    <h2 class="section__title">Toolkit</h2>
+                    <h2 class="section__title" data-split>Toolkit</h2>
                     <p class="section__note">Grouped by what I use them for, not by how long the list looks.</p>
                 </div>
 
-                <!-- infographic: where each layer of the stack sits -->
+                <!-- infographic: pins while its layers assemble on scroll -->
+                <div class="stage" id="stackStage">
+                    <div class="stage__inner">
                 <figure class="infographic reveal">
                     <div class="infographic__scroll">
                         <svg viewBox="0 0 1080 312" role="img" aria-labelledby="stackTitle stackDesc" preserveAspectRatio="xMidYMid meet">
@@ -251,6 +253,8 @@
                         Four layers I work across, and the three concerns that cut through all of them.
                     </figcaption>
                 </figure>
+                    </div>
+                </div>
 
                 <div class="skills">
                     <article class="skill-card reveal">
@@ -348,7 +352,7 @@
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">03 &mdash; Work</span>
-                    <h2 class="section__title">Selected repositories</h2>
+                    <h2 class="section__title" data-split>Selected repositories</h2>
                     <p class="section__note">Side projects and build-outs from <a class="link" href="https://github.com/yaseerhaja" target="_blank" rel="noopener">github.com/yaseerhaja</a> &mdash; mostly full-stack experiments in Angular, Vue and Node.</p>
                 </div>
 
@@ -523,7 +527,7 @@
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">04 &mdash; Experience</span>
-                    <h2 class="section__title">Where I've shipped</h2>
+                    <h2 class="section__title" data-split>Where I've shipped</h2>
                     <p class="section__note">Aviation, telecom and financial services &mdash; consistently on the platform side, close to real customers.</p>
                 </div>
 
@@ -611,7 +615,7 @@
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">05 &mdash; Background</span>
-                    <h2 class="section__title">Education, languages &amp; awards</h2>
+                    <h2 class="section__title" data-split>Education, languages &amp; awards</h2>
                 </div>
 
                 <div class="cards3">
@@ -665,7 +669,7 @@
                 <div class="contact">
                     <div class="reveal">
                         <span class="section__eyebrow">06 &mdash; Contact</span>
-                        <h2 class="contact__title">Let's build something<br>worth shipping.</h2>
+                        <h2 class="contact__title" data-split>Let's build something<br>worth shipping.</h2>
                         <p class="contact__note">
                             Open to senior and lead frontend roles in the Netherlands and remote-EU.
                             EU permanent resident &mdash; no sponsorship required.

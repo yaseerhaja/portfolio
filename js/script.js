@@ -118,13 +118,36 @@
   var splitTargets = document.querySelectorAll('[data-split]');
   if (!reduceMotion) {
     Array.prototype.forEach.call(splitTargets, splitWords);
-    requestAnimationFrame(function () {
+
+    /* the hero headline lights straight away; the rest wait their turn */
+    var hero = document.querySelector('.hero__title[data-split]');
+    if (hero) {
       requestAnimationFrame(function () {
-        Array.prototype.forEach.call(splitTargets, function (el) {
-          el.classList.add('is-lit');
+        requestAnimationFrame(function () {
+          hero.classList.add('is-lit');
         });
       });
-    });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var litObserver = new IntersectionObserver(
+        function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-lit');
+            obs.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '0px 0px -12% 0px', threshold: 0.1 }
+      );
+      Array.prototype.forEach.call(splitTargets, function (el) {
+        if (el !== hero) litObserver.observe(el);
+      });
+    } else {
+      Array.prototype.forEach.call(splitTargets, function (el) {
+        el.classList.add('is-lit');
+      });
+    }
   }
 
   /* ---------------------------------------------------- typewriter */
@@ -210,6 +233,68 @@
 
   /* --------------------------------------------------------- hero aura */
   var heroAura = document.getElementById('heroAura');
+  var heroSection = document.getElementById('top');
+  var heroCopy = heroSection && heroSection.querySelector('.hero__grid > div');
+  var heroPortrait = heroSection && heroSection.querySelector('.hero__portrait');
+
+  if (!reduceMotion && heroCopy) heroCopy.classList.add('hero__scrub');
+  if (!reduceMotion && heroPortrait) heroPortrait.classList.add('hero__scrub');
+
+  /* --------------------------------------------- pinned stack diagram */
+  /* The stage is taller than the viewport; the diagram sticks to the top
+     of it and the four layers land one after another as you scroll
+     through, in step with the scroll rather than on a single trigger. */
+  var stage = document.getElementById('stackStage');
+  var infoRows = stage ? stage.querySelectorAll('.info-row') : [];
+  var infoBracket = stage ? stage.querySelector('.info-bracket') : null;
+  var stackScrub = stage && infoRows.length && !reduceMotion;
+
+  if (stackScrub && window.innerWidth > 860) stage.classList.add('is-pinned');
+
+  function clamp01(v) {
+    return v < 0 ? 0 : v > 1 ? 1 : v;
+  }
+
+  /* smoothstep keeps each layer's arrival from starting or stopping abruptly */
+  function smooth(v) {
+    return v * v * (3 - 2 * v);
+  }
+
+  function drawStack() {
+    if (!stackScrub) return;
+
+    var box = stage.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var pinned = stage.classList.contains('is-pinned');
+    var p;
+
+    if (pinned) {
+      /* progress through the sticky travel */
+      p = clamp01(-box.top / Math.max(box.height - vh, 1));
+    } else {
+      p = clamp01((vh * 0.9 - box.top) / (box.height + vh * 0.5));
+    }
+
+    var n = infoRows.length;
+    var lastActive = -1;
+
+    for (var i = 0; i < n; i++) {
+      /* each layer owns an overlapping slice of the travel */
+      var start = (i / n) * 0.72;
+      var end = start + 0.34;
+      var rp = smooth(clamp01((p - start) / (end - start)));
+      infoRows[i].style.setProperty('--rp', rp.toFixed(3));
+      if (rp > 0.55) lastActive = i;
+    }
+
+    for (var j = 0; j < n; j++) {
+      infoRows[j].classList.toggle('is-active', j === lastActive && lastActive < n - 1);
+    }
+
+    if (infoBracket) {
+      infoBracket.style.setProperty('--bp', smooth(clamp01((p - 0.45) / 0.4)).toFixed(3));
+    }
+  }
 
   /* ----------------------------------------------------- timeline rail */
   var timeline = document.getElementById('timeline');
@@ -251,10 +336,25 @@
       navProgress.style.transform = 'scaleX(' + p.toFixed(4) + ')';
     }
 
-    /* gentle parallax on the decorative aura only — never on text */
-    if (heroAura && !reduceMotion && y < vh * 1.6) {
-      heroAura.style.transform = 'translate3d(0,' + (y * 0.16).toFixed(2) + 'px,0)';
+    /* hero scrub: the aura, portrait and copy leave at different rates and
+       dim on the way out, so the section hands over instead of just sliding */
+    if (heroSection && !reduceMotion && y < vh * 1.8) {
+      var hp = Math.min(y / (vh * 0.85), 1);
+      var fade = 1 - Math.max(hp - 0.15, 0) * 0.9;
+
+      if (heroAura) heroAura.style.transform = 'translate3d(0,' + (y * 0.16).toFixed(2) + 'px,0)';
+      if (heroCopy) {
+        heroCopy.style.transform = 'translate3d(0,' + (hp * -34).toFixed(2) + 'px,0)';
+        heroCopy.style.opacity = fade.toFixed(3);
+      }
+      if (heroPortrait) {
+        heroPortrait.style.transform =
+          'translate3d(0,' + (hp * -64).toFixed(2) + 'px,0) scale(' + (1 - hp * 0.05).toFixed(4) + ')';
+        heroPortrait.style.opacity = fade.toFixed(3);
+      }
     }
+
+    drawStack();
 
     /* rail fills as the timeline passes the reading line */
     if (timeline && timelineRail) {
@@ -277,7 +377,11 @@
   }
 
   window.addEventListener('scroll', requestFrame, { passive: true });
-  window.addEventListener('resize', requestFrame);
+  window.addEventListener('resize', function () {
+    /* pinning only makes sense where there is room for it */
+    if (stackScrub) stage.classList.toggle('is-pinned', window.innerWidth > 860);
+    requestFrame();
+  });
   onFrame();
 
   /* ------------------------------------------------------ scroll reveal */
