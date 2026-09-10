@@ -697,13 +697,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .stage { position: relative; }
 .stage__inner { position: relative; }
 
-@media (min-width: 861px) {
-  .stage.is-pinned { height: 230vh; }
-  .stage.is-pinned .stage__inner {
-    position: sticky;
-    top: 108px;
-  }
-}
+
 
 /* --------------------------------------------------------------- skills */
 .skills {
@@ -1243,8 +1237,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   .btn::after { display: none; }
   .info-row { opacity: 1; transform: none; }
   .info-bracket { stroke-dashoffset: 0; }
-  .stage.is-pinned { height: auto; }
-  .stage.is-pinned .stage__inner { position: static; }
   .typewriter__caret { display: none; }
 }
 

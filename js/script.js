@@ -249,8 +249,6 @@
   var infoBracket = stage ? stage.querySelector('.info-bracket') : null;
   var stackScrub = stage && infoRows.length && !reduceMotion;
 
-  if (stackScrub && window.innerWidth > 860) stage.classList.add('is-pinned');
-
   function clamp01(v) {
     return v < 0 ? 0 : v > 1 ? 1 : v;
   }
@@ -265,23 +263,18 @@
 
     var box = stage.getBoundingClientRect();
     var vh = window.innerHeight;
-    var pinned = stage.classList.contains('is-pinned');
-    var p;
 
-    if (pinned) {
-      /* progress through the sticky travel */
-      p = clamp01(-box.top / Math.max(box.height - vh, 1));
-    } else {
-      p = clamp01((vh * 0.9 - box.top) / (box.height + vh * 0.5));
-    }
+    /* progress across the diagram's own trip through the viewport — no
+       pinning, so there is no stretch of dead scroll or empty frame */
+    var p = clamp01((vh * 0.92 - box.top) / (box.height + vh * 0.55));
 
     var n = infoRows.length;
     var lastActive = -1;
 
     for (var i = 0; i < n; i++) {
       /* each layer owns an overlapping slice of the travel */
-      var start = (i / n) * 0.72;
-      var end = start + 0.34;
+      var start = (i / n) * 0.62;
+      var end = start + 0.3;
       var rp = smooth(clamp01((p - start) / (end - start)));
       infoRows[i].style.setProperty('--rp', rp.toFixed(3));
       if (rp > 0.55) lastActive = i;
@@ -292,7 +285,7 @@
     }
 
     if (infoBracket) {
-      infoBracket.style.setProperty('--bp', smooth(clamp01((p - 0.45) / 0.4)).toFixed(3));
+      infoBracket.style.setProperty('--bp', smooth(clamp01((p - 0.5) / 0.35)).toFixed(3));
     }
   }
 
@@ -377,11 +370,7 @@
   }
 
   window.addEventListener('scroll', requestFrame, { passive: true });
-  window.addEventListener('resize', function () {
-    /* pinning only makes sense where there is room for it */
-    if (stackScrub) stage.classList.toggle('is-pinned', window.innerWidth > 860);
-    requestFrame();
-  });
+  window.addEventListener('resize', requestFrame);
   onFrame();
 
   /* ------------------------------------------------------ scroll reveal */
