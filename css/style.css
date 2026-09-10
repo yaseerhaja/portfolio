@@ -791,6 +791,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .carousel__viewport {
   overflow: hidden;
+  /* clipping is only wanted on the sides — pad the box out vertically so a
+     card's hover lift and its shadow are not sheared off */
+  padding-block: 22px;
+  margin-block: -22px;
   /* soften the cards entering and leaving the frame */
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
   mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
