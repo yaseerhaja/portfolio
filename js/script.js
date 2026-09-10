@@ -638,6 +638,26 @@
     detailBody.innerHTML = '';
   }
 
+  /* the drawer is a grid item: give it an order that lands it just after the
+     last card in the open card's row, so the detail is never far from what
+     was clicked */
+  function placeDetail(card) {
+    var grid = card.parentElement;
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.cap'));
+    var cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+    var row = Math.floor(cards.indexOf(card) / cols);
+
+    cards.forEach(function (c, i) {
+      c.style.order = i * 2;
+    });
+    detail.style.order = (Math.min((row + 1) * cols, cards.length) - 1) * 2 + 1;
+
+    /* the caret sits over the middle of the open card */
+    var cardBox = card.getBoundingClientRect();
+    var gridBox = grid.getBoundingClientRect();
+    detail.style.setProperty('--nx', cardBox.left - gridBox.left + cardBox.width / 2 + 'px');
+  }
+
   function openDetail(btn) {
     var source = document.getElementById(btn.getAttribute('data-detail'));
     if (!detail || !source) return;
@@ -645,7 +665,9 @@
     closeDetail();
     openHead = btn;
     btn.setAttribute('aria-expanded', 'true');
-    btn.closest('.cap').classList.add('is-open');
+    var card = btn.closest('.cap');
+    card.classList.add('is-open');
+    placeDetail(card);
 
     var name = btn.querySelector('.cap__name');
     detailTitle.textContent = name ? name.childNodes[0].nodeValue : '';
@@ -667,6 +689,10 @@
   });
 
   if (detail) {
+    window.addEventListener('resize', function () {
+      if (openHead) placeDetail(openHead.closest('.cap'));
+    });
+
     detail.querySelector('.cap-detail__close').addEventListener('click', function () {
       var last = openHead;
       closeDetail();

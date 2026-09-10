@@ -1369,7 +1369,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .cap-detail {
   position: relative;
-  margin-top: var(--space-3);
+  /* full width, in the row under the card that opened it */
+  grid-column: 1 / -1;
   padding: var(--space-5);
   border: 1px solid var(--accent-line);
   border-radius: var(--radius);
@@ -1377,6 +1378,20 @@ ul { margin: 0; padding: 0; list-style: none; }
   animation: detailIn 420ms var(--ease);
 }
 .cap-detail[hidden] { display: none; }
+/* points back at the card that opened it */
+.cap-detail::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: var(--nx, 50%);
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  transform: rotate(45deg);
+  border-left: 1px solid var(--accent-line);
+  border-top: 1px solid var(--accent-line);
+  background: var(--bg-elev);
+}
 .cap-detail__bar {
   display: flex;
   align-items: center;
