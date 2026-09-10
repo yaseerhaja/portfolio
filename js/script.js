@@ -409,7 +409,7 @@
     );
 
     /* siblings that enter together get a small cascade */
-    var groups = document.querySelectorAll('.stats, .skills, .work, .cards3, .facts, .contact__links');
+    var groups = document.querySelectorAll('.stats, .skills, .caps__grid, .prof__intro, .work, .cards3, .facts, .contact__links');
     Array.prototype.forEach.call(groups, function (group) {
       var kids = group.querySelectorAll(':scope > .reveal');
       Array.prototype.forEach.call(kids, function (kid, i) {
@@ -427,7 +427,7 @@
 
   /* --------------------------------------------- pointer-tracked sheen */
   if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !reduceMotion) {
-    var cards = document.querySelectorAll('.skill-card, .work-card');
+    var cards = document.querySelectorAll('.skill-card, .work-card, .cap');
     Array.prototype.forEach.call(cards, function (card) {
       card.addEventListener(
         'pointermove',
@@ -615,6 +615,95 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
     requestAnimationFrame(tick);
   })();
+
+  /* --------------------------------------------- disclosure panels */
+  /* Service cards and proficiency rows share one open/close routine.
+     The panel appears and disappears outright — its content is what
+     animates, so there is no height transition to get stuck halfway and
+     leave a panel that the button says is closed. */
+  function setPanel(btn, open) {
+    var body = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!body) return;
+
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    var row = btn.closest('.prof-row');
+    if (row) row.classList.toggle('is-open', open);
+
+    body.hidden = !open;
+    if (open && !reduceMotion) {
+      /* restart the entry animation on every open */
+      body.removeAttribute('data-anim');
+      void body.offsetWidth;
+      body.setAttribute('data-anim', 'in');
+    } else {
+      body.removeAttribute('data-anim');
+    }
+  }
+
+  var disclosures = document.querySelectorAll('.cap__head, .prof-row__head');
+  Array.prototype.forEach.call(disclosures, function (btn) {
+    btn.addEventListener('click', function () {
+      setPanel(btn, btn.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+
+  /* ------------------------------------------------------------- tabs */
+  var tabList = document.querySelector('.tabs__list');
+  if (tabList) {
+    var tabs = tabList.querySelectorAll('.tabs__tab');
+    var ink = tabList.querySelector('.tabs__ink');
+
+    function moveInk(tab) {
+      if (!ink) return;
+      ink.style.setProperty('--x', tab.offsetLeft + 'px');
+      ink.style.setProperty('--w', tab.offsetWidth + 'px');
+    }
+
+    function selectTab(tab, focus) {
+      Array.prototype.forEach.call(tabs, function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.classList.toggle('is-active', on);
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !on;
+      });
+      moveInk(tab);
+      if (focus) tab.focus();
+    }
+
+    Array.prototype.forEach.call(tabs, function (tab) {
+      tab.addEventListener('click', function () {
+        selectTab(tab, false);
+      });
+    });
+
+    /* arrow-key roving, per the ARIA tabs pattern */
+    tabList.addEventListener('keydown', function (e) {
+      var i = Array.prototype.indexOf.call(tabs, document.activeElement);
+      if (i < 0) return;
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (!next) return;
+      e.preventDefault();
+      selectTab(next, true);
+    });
+
+    var active = tabList.querySelector('.tabs__tab.is-active') || tabs[0];
+    moveInk(active);
+    /* the pill is sized from layout, so re-measure once fonts land and on resize */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        moveInk(tabList.querySelector('.tabs__tab.is-active') || tabs[0]);
+      });
+    }
+    window.addEventListener('resize', function () {
+      moveInk(tabList.querySelector('.tabs__tab.is-active') || tabs[0]);
+    });
+  }
 
   /* ------------------------------------------------- copy to clipboard */
   /* The mailto: button next to this one needs a mail client to do
