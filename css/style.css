@@ -1213,6 +1213,15 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: var(--space-3);
+  /* every card the same box: rows share one height and cards stretch to it,
+     so the meters line up along the bottom */
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+}
+/* while a panel is open, equal rows would pad every other card out to the
+   open one's height — let the cards size themselves for that spell */
+.caps__grid.has-open {
+  grid-auto-rows: auto;
   align-items: start;
 }
 
@@ -1252,9 +1261,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
+/* out of flow, so the primary card keeps the same internal rhythm as the rest */
 .cap__flag {
-  position: relative;
-  align-self: flex-start;
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
   padding: 3px 10px;
   border-radius: 999px;
   background: var(--accent);
@@ -1267,6 +1278,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: relative;
   display: none;
   align-self: flex-start;
+  margin-right: 90px;
   padding: 3px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);

@@ -630,6 +630,12 @@
     if (row) row.classList.toggle('is-open', open);
 
     body.hidden = !open;
+
+    var grid = btn.closest('.caps__grid');
+    if (grid) {
+      grid.classList.toggle('has-open', !!grid.querySelector(".cap__head[aria-expanded='true']"));
+    }
+
     if (open && !reduceMotion) {
       /* restart the entry animation on every open */
       body.removeAttribute('data-anim');
