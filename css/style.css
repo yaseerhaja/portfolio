@@ -1218,12 +1218,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   grid-auto-rows: 1fr;
   align-items: stretch;
 }
-/* while a panel is open, equal rows would pad every other card out to the
-   open one's height — let the cards size themselves for that spell */
-.caps__grid.has-open {
-  grid-auto-rows: auto;
-  align-items: start;
-}
+
 
 .cap {
   position: relative;
@@ -1250,6 +1245,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .cap:hover { border-color: var(--accent-line); transform: translateY(-4px); box-shadow: var(--shadow-lift); }
 .cap:hover::before { opacity: 1; }
 .cap:focus-within { border-color: var(--accent-line); }
+.cap.is-open { border-color: var(--accent-line); background: var(--bg-elev); }
 
 /* the one I am hired for */
 .cap--key { border-color: var(--accent-line); background: var(--bg-elev); }
@@ -1368,9 +1364,58 @@ ul { margin: 0; padding: 0; list-style: none; }
   margin-right: 4px;
 }
 
-.cap__body { position: relative; display: grid; min-height: 0; gap: var(--space-3); }
+/* the card keeps the copy; the drawer is what renders it */
+.cap__body { display: none; }
+
+.cap-detail {
+  position: relative;
+  margin-top: var(--space-3);
+  padding: var(--space-5);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+  animation: detailIn 420ms var(--ease);
+}
+.cap-detail[hidden] { display: none; }
+.cap-detail__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.cap-detail__title {
+  margin: 0;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 1.15rem;
+}
+.cap-detail__close {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.cap-detail__close:hover { color: var(--fg); border-color: var(--border-strong); }
+.cap-detail__close svg { width: 18px; height: 18px; }
+.cap-detail__content { display: grid; gap: var(--space-4); }
+/* the bullet list runs in two columns while there is room for it */
+.cap-detail__content .cap__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px var(--space-5); }
+@media (max-width: 760px) {
+  .cap-detail { padding: var(--space-4); }
+  .cap-detail__content .cap__list { grid-template-columns: 1fr; }
+}
+@keyframes detailIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
 /* display:grid would otherwise beat the UA rule for the hidden attribute */
-.cap__body[hidden],
 .prof-row__body[hidden],
 .tabs__panel[hidden] { display: none; }
 .cap__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
@@ -1523,11 +1568,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 .lvl--mid { border-color: var(--border-strong); color: var(--fg-muted); }
 
 /* the panel itself appears at once; its content is what animates in */
-.cap__body[data-anim='in'] > *,
+.cap-detail[data-anim='in'] .cap-detail__content > *,
 .prof-row__body[data-anim='in'] > * {
   animation: profIn 480ms var(--ease) backwards;
 }
-.cap__body[data-anim='in'] > *:nth-child(2),
+.cap-detail[data-anim='in'] .cap-detail__content > *:nth-child(2),
 .prof-row__body[data-anim='in'] > *:nth-child(2) { animation-delay: 70ms; }
 @keyframes profIn {
   from { opacity: 0; transform: translateY(8px); }
@@ -1622,7 +1667,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .info-bracket { stroke-dashoffset: 0; }
   .is-in .cap .meter > i { transform: scaleX(var(--v, 1)); }
   .tabs__ink { transition: none; }
-  .cap__body[data-anim='in'] > *,
+  .cap-detail,
+  .cap-detail[data-anim='in'] .cap-detail__content > *,
   .prof-row__body[data-anim='in'] > * { animation: none; }
   .typewriter__caret { display: none; }
 }

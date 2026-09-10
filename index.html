@@ -431,7 +431,7 @@
                         <article class="cap reveal">
                             <span class="cap__chip">Design</span>
                             <h3 class="cap__h">
-                                <button class="cap__head" type="button" aria-expanded="false" aria-controls="capBody1">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody1" aria-controls="capDetail">
                                     <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7a3.5 3.5 0 0 0-5-5l-7 7"/><path d="M7 14l-2 5 5-2"/><path d="M14 6l4 4"/></svg></span>
                                     <span class="cap__name">Visual design<small>Frontend</small></span>
                                     <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -461,7 +461,7 @@
                             <span class="cap__chip">Develop</span>
                             <span class="cap__flag">Primary</span>
                             <h3 class="cap__h">
-                                <button class="cap__head" type="button" aria-expanded="false" aria-controls="capBody2">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody2" aria-controls="capDetail">
                                     <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
                                     <span class="cap__name">User interface development<small>Frontend</small></span>
                                     <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -493,7 +493,7 @@
                         <article class="cap reveal">
                             <span class="cap__chip">Develop</span>
                             <h3 class="cap__h">
-                                <button class="cap__head" type="button" aria-expanded="false" aria-controls="capBody3">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody3" aria-controls="capDetail">
                                     <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h6l2 3h8"/><rect x="3" y="10" width="18" height="10" rx="2.5"/><path d="M7 15h2M12 15h5"/></svg></span>
                                     <span class="cap__name">REST &amp; GraphQL APIs<small>Backend</small></span>
                                     <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -522,7 +522,7 @@
                         <article class="cap reveal">
                             <span class="cap__chip">Develop</span>
                             <h3 class="cap__h">
-                                <button class="cap__head" type="button" aria-expanded="false" aria-controls="capBody4">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody4" aria-controls="capDetail">
                                     <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
                                     <span class="cap__name">Database development<small>Backend</small></span>
                                     <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -549,7 +549,7 @@
                         <article class="cap reveal">
                             <span class="cap__chip">Deploy</span>
                             <h3 class="cap__h">
-                                <button class="cap__head" type="button" aria-expanded="false" aria-controls="capBody5">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody5" aria-controls="capDetail">
                                     <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.2 9.5 4.25 4.25 0 0 0 7 19h10.5z"/><path d="M12 16v-5M12 11l-2 2M12 11l2 2"/></svg></span>
                                     <span class="cap__name">Deployment &amp; hosting<small>Cloud</small></span>
                                     <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -574,6 +574,18 @@
                                 </div>
                             </div>
                         </article>
+                    </div>
+
+                    <!-- one drawer for all five cards: the cards keep a single
+                         fixed size, and the detail opens underneath them -->
+                    <div class="cap-detail" id="capDetail" role="region" aria-labelledby="capDetailTitle" hidden>
+                        <div class="cap-detail__bar">
+                            <h4 class="cap-detail__title" id="capDetailTitle"></h4>
+                            <button class="cap-detail__close" type="button" aria-label="Close details">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                            </button>
+                        </div>
+                        <div class="cap-detail__content"></div>
                     </div>
                 </div>
 

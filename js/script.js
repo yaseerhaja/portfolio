@@ -617,39 +617,79 @@
   })();
 
   /* --------------------------------------------- disclosure panels */
-  /* Service cards and proficiency rows share one open/close routine.
-     The panel appears and disappears outright — its content is what
-     animates, so there is no height transition to get stuck halfway and
-     leave a panel that the button says is closed. */
-  function setPanel(btn, open) {
-    var body = document.getElementById(btn.getAttribute('aria-controls'));
-    if (!body) return;
+  /* The five service cards stay one fixed size: opening one does not grow
+     the card, it fills a single drawer under the grid. The proficiency
+     rows are full width already, so those expand in place. */
+  var detail = document.getElementById('capDetail');
+  var detailTitle = document.getElementById('capDetailTitle');
+  var detailBody = detail ? detail.querySelector('.cap-detail__content') : null;
+  var capHeads = document.querySelectorAll('.cap__head');
+  var openHead = null;
 
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    var row = btn.closest('.prof-row');
-    if (row) row.classList.toggle('is-open', open);
+  function closeDetail() {
+    if (!detail) return;
+    if (openHead) openHead.setAttribute('aria-expanded', 'false');
+    Array.prototype.forEach.call(document.querySelectorAll('.cap.is-open'), function (c) {
+      c.classList.remove('is-open');
+    });
+    openHead = null;
+    detail.hidden = true;
+    detail.removeAttribute('data-anim');
+    detailBody.innerHTML = '';
+  }
 
-    body.hidden = !open;
+  function openDetail(btn) {
+    var source = document.getElementById(btn.getAttribute('data-detail'));
+    if (!detail || !source) return;
 
-    var grid = btn.closest('.caps__grid');
-    if (grid) {
-      grid.classList.toggle('has-open', !!grid.querySelector(".cap__head[aria-expanded='true']"));
-    }
+    closeDetail();
+    openHead = btn;
+    btn.setAttribute('aria-expanded', 'true');
+    btn.closest('.cap').classList.add('is-open');
 
-    if (open && !reduceMotion) {
-      /* restart the entry animation on every open */
-      body.removeAttribute('data-anim');
-      void body.offsetWidth;
-      body.setAttribute('data-anim', 'in');
-    } else {
-      body.removeAttribute('data-anim');
+    var name = btn.querySelector('.cap__name');
+    detailTitle.textContent = name ? name.childNodes[0].nodeValue : '';
+    detailBody.innerHTML = source.innerHTML;
+
+    detail.hidden = false;
+    if (!reduceMotion) {
+      detail.removeAttribute('data-anim');
+      void detail.offsetWidth;
+      detail.setAttribute('data-anim', 'in');
     }
   }
 
-  var disclosures = document.querySelectorAll('.cap__head, .prof-row__head');
-  Array.prototype.forEach.call(disclosures, function (btn) {
+  Array.prototype.forEach.call(capHeads, function (btn) {
     btn.addEventListener('click', function () {
-      setPanel(btn, btn.getAttribute('aria-expanded') !== 'true');
+      if (btn === openHead) closeDetail();
+      else openDetail(btn);
+    });
+  });
+
+  if (detail) {
+    detail.querySelector('.cap-detail__close').addEventListener('click', function () {
+      var last = openHead;
+      closeDetail();
+      if (last) last.focus();
+    });
+  }
+
+  /* proficiency rows: plain in-place accordion */
+  Array.prototype.forEach.call(document.querySelectorAll('.prof-row__head'), function (btn) {
+    btn.addEventListener('click', function () {
+      var body = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!body) return;
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.closest('.prof-row').classList.toggle('is-open', open);
+      body.hidden = !open;
+      if (open && !reduceMotion) {
+        body.removeAttribute('data-anim');
+        void body.offsetWidth;
+        body.setAttribute('data-anim', 'in');
+      } else {
+        body.removeAttribute('data-anim');
+      }
     });
   });
 
