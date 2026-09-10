@@ -1,39 +1,54 @@
-# Hi there, I'm Yaseer Haja 👋
+# Portfolio — Hajamohaideen Kudhbudeen
 
-Welcome to my GitHub profile! I'm a passionate developer and technology enthusiast who loves building solutions, learning new technologies, and collaborating on open source projects.
+Personal portfolio for a Senior Frontend Engineer working in Angular, TypeScript and design
+systems. Live at **https://yaseerhaja.github.io/portfolio/**.
 
-## 🚀 About Me
+## What it is
 
-- 💻 Software Engineer with a keen interest in backend development, cloud computing, and automation.
-- 🌱 Currently exploring new frameworks and deepening my knowledge in DevOps and distributed systems.
-- 🛠️ Skilled in Python, JavaScript, TypeScript, and a handful of other languages and frameworks.
-- 🤝 Always open to collaborating on interesting projects and contributing to open source.
+One page, hand-written, with no framework and no build step:
 
-## 📫 How to Reach Me
+```
+index.html          the whole page
+css/style.css       design tokens, layout, motion
+js/script.js        interactions, no dependencies
+img/                portrait, share card, favicons
+pdf/                downloadable résumé
+sitemap.xml         single-URL sitemap
+```
 
-- GitHub: [yaseerhaja](https://github.com/yaseerhaja)
-- LinkedIn: [linkedin.com/in/yaseerhaja](https://linkedin.com/in/yaseerhaja)
-- Email: yaseerhaja@gmail.com
+Roughly 115 KB gzipped over the wire, fonts aside. Everything ships as it is written — there is
+nothing to compile, install or bundle.
 
-## 🛠️ Technologies & Tools
+## Running it locally
 
-![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white)
-![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
-![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=white)
-![AWS](https://img.shields.io/badge/-AWS-232F3E?logo=amazon-aws&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)
+Any static file server will do. From the repository root:
 
-## 📈 GitHub Stats
+```bash
+python -m http.server 8000
+```
 
-![Yaseer's GitHub Stats](https://github-readme-stats.vercel.app/api?username=yaseerhaja&show_icons=true&hide_title=true&count_private=true&theme=github_dark)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=yaseerhaja&layout=compact&theme=github_dark)
+Then open http://localhost:8000. There is no `npm install` step, and no `package.json` — the site
+has no JavaScript dependencies.
 
-## ⚡ Fun Fact
+## How it is built
 
-I love solving puzzles and automating daily tasks to make life a little easier!
+- **Design system in CSS custom properties.** Colour, spacing, radius, shadow and easing are
+  declared once on `:root`, with a `[data-theme='light']` block overriding the colour tokens.
+  Dark is the default; the toggle in the header persists the choice to `localStorage`.
+- **Type.** Space Grotesk for display, Archivo for body, both from Google Fonts with `display=swap`
+  and a real fallback stack.
+- **Motion is transform and opacity only**, on a single rAF-throttled scroll pass, and every effect
+  switches itself off under `prefers-reduced-motion`. There is a print stylesheet too.
+- **Accessibility** is part of the build, not a pass at the end: skip link, visible focus rings,
+  ARIA tab and disclosure patterns, `aria-hidden` on the carousel's cloned cards, and a
+  visually-hidden transcript behind the animated role line.
 
----
+## Deployment
 
-Thanks for stopping by! Feel free to check out my repositories and connect with me. Let's build something awesome together! 🚀
+GitHub Pages serves `master` from the repository root. Pushing to `master` publishes.
+
+## Editing the content
+
+The page content mirrors `HajamohaideenK_Senior_FrontEnd_Developer_Resum.docx`. When the résumé
+changes, update both the relevant section in `index.html` and the PDF in `pdf/`, so the page and
+the download never disagree.
