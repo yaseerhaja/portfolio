@@ -409,7 +409,7 @@
     );
 
     /* siblings that enter together get a small cascade */
-    var groups = document.querySelectorAll('.stats, .skills, .work, .cards3, .facts, .contact__links');
+    var groups = document.querySelectorAll('.stats, .skills, .caps__grid, .prof__intro, .work, .cards3, .facts, .contact__links');
     Array.prototype.forEach.call(groups, function (group) {
       var kids = group.querySelectorAll(':scope > .reveal');
       Array.prototype.forEach.call(kids, function (kid, i) {
@@ -427,7 +427,7 @@
 
   /* --------------------------------------------- pointer-tracked sheen */
   if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !reduceMotion) {
-    var cards = document.querySelectorAll('.skill-card, .work-card');
+    var cards = document.querySelectorAll('.skill-card, .work-card, .cap');
     Array.prototype.forEach.call(cards, function (card) {
       card.addEventListener(
         'pointermove',
@@ -615,6 +615,141 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
     requestAnimationFrame(tick);
   })();
+
+  /* --------------------------------------------- disclosure panels */
+  /* The five service cards stay one fixed size: opening one does not grow
+     the card, it fills a single drawer under the grid. The proficiency
+     rows are full width already, so those expand in place. */
+  var detail = document.getElementById('capDetail');
+  var detailTitle = document.getElementById('capDetailTitle');
+  var detailBody = detail ? detail.querySelector('.cap-detail__content') : null;
+  var capHeads = document.querySelectorAll('.cap__head');
+  var openHead = null;
+
+  function closeDetail() {
+    if (!detail) return;
+    if (openHead) openHead.setAttribute('aria-expanded', 'false');
+    Array.prototype.forEach.call(document.querySelectorAll('.cap.is-open'), function (c) {
+      c.classList.remove('is-open');
+    });
+    openHead = null;
+    detail.hidden = true;
+    detail.removeAttribute('data-anim');
+    detailBody.innerHTML = '';
+  }
+
+  function openDetail(btn) {
+    var source = document.getElementById(btn.getAttribute('data-detail'));
+    if (!detail || !source) return;
+
+    closeDetail();
+    openHead = btn;
+    btn.setAttribute('aria-expanded', 'true');
+    btn.closest('.cap').classList.add('is-open');
+
+    var name = btn.querySelector('.cap__name');
+    detailTitle.textContent = name ? name.childNodes[0].nodeValue : '';
+    detailBody.innerHTML = source.innerHTML;
+
+    detail.hidden = false;
+    if (!reduceMotion) {
+      detail.removeAttribute('data-anim');
+      void detail.offsetWidth;
+      detail.setAttribute('data-anim', 'in');
+    }
+  }
+
+  Array.prototype.forEach.call(capHeads, function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn === openHead) closeDetail();
+      else openDetail(btn);
+    });
+  });
+
+  if (detail) {
+    detail.querySelector('.cap-detail__close').addEventListener('click', function () {
+      var last = openHead;
+      closeDetail();
+      if (last) last.focus();
+    });
+  }
+
+  /* proficiency rows: plain in-place accordion */
+  Array.prototype.forEach.call(document.querySelectorAll('.prof-row__head'), function (btn) {
+    btn.addEventListener('click', function () {
+      var body = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!body) return;
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.closest('.prof-row').classList.toggle('is-open', open);
+      body.hidden = !open;
+      if (open && !reduceMotion) {
+        body.removeAttribute('data-anim');
+        void body.offsetWidth;
+        body.setAttribute('data-anim', 'in');
+      } else {
+        body.removeAttribute('data-anim');
+      }
+    });
+  });
+
+  /* ------------------------------------------------------------- tabs */
+  var tabList = document.querySelector('.tabs__list');
+  if (tabList) {
+    var tabs = tabList.querySelectorAll('.tabs__tab');
+    var ink = tabList.querySelector('.tabs__ink');
+
+    function moveInk(tab) {
+      if (!ink) return;
+      ink.style.setProperty('--x', tab.offsetLeft + 'px');
+      ink.style.setProperty('--w', tab.offsetWidth + 'px');
+    }
+
+    function selectTab(tab, focus) {
+      Array.prototype.forEach.call(tabs, function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.classList.toggle('is-active', on);
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !on;
+      });
+      moveInk(tab);
+      if (focus) tab.focus();
+    }
+
+    Array.prototype.forEach.call(tabs, function (tab) {
+      tab.addEventListener('click', function () {
+        selectTab(tab, false);
+      });
+    });
+
+    /* arrow-key roving, per the ARIA tabs pattern */
+    tabList.addEventListener('keydown', function (e) {
+      var i = Array.prototype.indexOf.call(tabs, document.activeElement);
+      if (i < 0) return;
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (!next) return;
+      e.preventDefault();
+      selectTab(next, true);
+    });
+
+    var active = tabList.querySelector('.tabs__tab.is-active') || tabs[0];
+    moveInk(active);
+    /* the pill is sized from layout, so re-measure once fonts land and on resize */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        moveInk(tabList.querySelector('.tabs__tab.is-active') || tabs[0]);
+      });
+    }
+    window.addEventListener('resize', function () {
+      moveInk(tabList.querySelector('.tabs__tab.is-active') || tabs[0]);
+    });
+  }
 
   /* ------------------------------------------------- copy to clipboard */
   /* The mailto: button next to this one needs a mail client to do

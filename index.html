@@ -8,10 +8,26 @@
     <meta name="author" content="Hajamohaideen Kudhbudeen">
     <meta name="theme-color" content="#08080a">
 
-    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://yaseerhaja.github.io/portfolio/">
+
+    <!-- Absolute URLs: LinkedIn, Slack and WhatsApp all drop relative ones -->
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Hajamohaideen Kudhbudeen">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:url" content="https://yaseerhaja.github.io/portfolio/">
     <meta property="og:title" content="Hajamohaideen Kudhbudeen — Senior Frontend Engineer">
     <meta property="og:description" content="17+ years in Angular, TypeScript and design systems. KLM Royal Dutch Airlines, Verizon, Discover Financial Services.">
-    <meta property="og:image" content="img/portrait.jpg">
+    <meta property="og:image" content="https://yaseerhaja.github.io/portfolio/img/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Hajamohaideen Kudhbudeen, Senior Frontend Engineer — Angular, TypeScript, design systems.">
+    <meta property="profile:first_name" content="Hajamohaideen">
+    <meta property="profile:last_name" content="Kudhbudeen">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hajamohaideen Kudhbudeen — Senior Frontend Engineer">
+    <meta name="twitter:description" content="17+ years in Angular, TypeScript and design systems. KLM Royal Dutch Airlines, Verizon, Discover Financial Services.">
+    <meta name="twitter:image" content="https://yaseerhaja.github.io/portfolio/img/og-card.jpg">
 
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
@@ -22,6 +38,51 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hajamohaideen Kudhbudeen",
+      "givenName": "Hajamohaideen",
+      "familyName": "Kudhbudeen",
+      "jobTitle": "Senior Frontend Engineer",
+      "description": "Senior Frontend Engineer with 17+ years building large-scale customer-facing platforms in aviation, banking and telecom with Angular, React, TypeScript, Node.js and GraphQL.",
+      "url": "https://yaseerhaja.github.io/portfolio/",
+      "image": "https://yaseerhaja.github.io/portfolio/img/portrait.jpg",
+      "email": "mailto:yaseerhaja@gmail.com",
+      "telephone": "+31619807460",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Amstelveen",
+        "addressRegion": "Noord-Holland",
+        "addressCountry": "NL"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Tata Consultancy Services"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Rajiv Gandhi College of Engineering and Technology"
+      },
+      "knowsAbout": [
+        "Angular",
+        "TypeScript",
+        "React",
+        "Design systems",
+        "Web accessibility",
+        "Nx monorepos",
+        "GraphQL",
+        "Node.js"
+      ],
+      "knowsLanguage": ["English", "Dutch", "Tamil", "French"],
+      "sameAs": [
+        "https://github.com/yaseerhaja",
+        "https://www.linkedin.com/in/hajamohaideenk/"
+      ]
+    }
+    </script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -37,6 +98,7 @@
             <nav class="nav__links" id="navLinks" aria-label="Primary">
                 <a class="nav__link" href="#about">About</a>
                 <a class="nav__link" href="#skills">Skills</a>
+                <a class="nav__link" href="#services">Services</a>
                 <a class="nav__link" href="#work">Work</a>
                 <a class="nav__link" href="#experience">Experience</a>
                 <a class="nav__link" href="#background">Background</a>
@@ -347,11 +409,396 @@
             </div>
         </section>
 
+        <!-- ==================================================== services -->
+        <section class="section" id="services">
+            <div class="wrap">
+                <div class="section__head reveal">
+                    <span class="section__eyebrow">03 &mdash; Services</span>
+                    <h2 class="section__title" data-split>What I can do for your business</h2>
+                    <p class="section__note">Five capabilities across three phases of delivery. Open a card to see what each one covers.</p>
+                </div>
+
+                <div class="caps reveal">
+                    <!-- phase rail: decorative on wide screens, the card chips carry
+                         the same information once the grid stacks -->
+                    <div class="caps__rail" aria-hidden="true">
+                        <span class="caps__phase" style="--from:1;--to:2">Design</span>
+                        <span class="caps__phase" style="--from:2;--to:5">Develop</span>
+                        <span class="caps__phase" style="--from:5;--to:6">Deploy</span>
+                    </div>
+
+                    <div class="caps__grid" data-stagger>
+                        <article class="cap reveal">
+                            <span class="cap__chip">Design</span>
+                            <h3 class="cap__h">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody1" aria-controls="capDetail">
+                                    <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7a3.5 3.5 0 0 0-5-5l-7 7"/><path d="M7 14l-2 5 5-2"/><path d="M14 6l4 4"/></svg></span>
+                                    <span class="cap__name">Visual design<small>Frontend</small></span>
+                                    <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </button>
+                            </h3>
+                            <p class="cap__lede">I translate insight and research into visual design for the frontend of web applications.</p>
+                            <div class="cap__years">
+                                <span class="meter" aria-hidden="true"><i style="--v:.18"></i></span>
+                                <span class="cap__yr"><b>3</b> yrs</span>
+                            </div>
+                            <div class="cap__body" id="capBody1" hidden>
+                                <ul class="cap__list">
+                                    <li>Design tokens, colour systems and type scales</li>
+                                    <li>Layout, spacing rhythm and interaction states</li>
+                                    <li>Prototypes in Figma and Adobe XD</li>
+                                    <li>Contrast and focus states checked against WCAG</li>
+                                </ul>
+                                <div class="tags">
+                                    <span class="tag">Figma</span><span class="tag">Adobe XD</span>
+                                    <span class="tag">Photoshop</span><span class="tag">Design tokens</span>
+                                    <span class="tag">Prototyping</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="cap cap--key reveal">
+                            <span class="cap__chip">Develop</span>
+                            <span class="cap__flag">Primary</span>
+                            <h3 class="cap__h">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody2" aria-controls="capDetail">
+                                    <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+                                    <span class="cap__name">User interface development<small>Frontend</small></span>
+                                    <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </button>
+                            </h3>
+                            <p class="cap__lede">I turn visual designs into interactive, accessible user interfaces that hold up in production.</p>
+                            <div class="cap__years">
+                                <span class="meter" aria-hidden="true"><i style="--v:1"></i></span>
+                                <span class="cap__yr"><b>17</b> yrs</span>
+                            </div>
+                            <div class="cap__body" id="capBody2" hidden>
+                                <ul class="cap__list">
+                                    <li>Angular, React and Vue applications at airline and banking scale</li>
+                                    <li>Reusable component libraries and design systems</li>
+                                    <li>State management and predictable data flow</li>
+                                    <li>WCAG 2.1 AA from the first commit, not as a retrofit</li>
+                                    <li>Core Web Vitals budgets held through release</li>
+                                </ul>
+                                <div class="tags">
+                                    <span class="tag">Angular v16&ndash;21</span><span class="tag">TypeScript</span>
+                                    <span class="tag">React</span><span class="tag">Vue.js</span>
+                                    <span class="tag">RxJS</span><span class="tag">Signals</span>
+                                    <span class="tag">NgRx</span><span class="tag">SCSS</span>
+                                    <span class="tag">Storybook</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="cap reveal">
+                            <span class="cap__chip">Develop</span>
+                            <h3 class="cap__h">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody3" aria-controls="capDetail">
+                                    <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h6l2 3h8"/><rect x="3" y="10" width="18" height="10" rx="2.5"/><path d="M7 15h2M12 15h5"/></svg></span>
+                                    <span class="cap__name">REST &amp; GraphQL APIs<small>Backend</small></span>
+                                    <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </button>
+                            </h3>
+                            <p class="cap__lede">I build the services that carry the business logic behind a frontend.</p>
+                            <div class="cap__years">
+                                <span class="meter" aria-hidden="true"><i style="--v:.47"></i></span>
+                                <span class="cap__yr"><b>8</b> yrs</span>
+                            </div>
+                            <div class="cap__body" id="capBody3" hidden>
+                                <ul class="cap__list">
+                                    <li>REST services in Node.js and Loopback</li>
+                                    <li>GraphQL schemas and resolvers</li>
+                                    <li>Swagger / OpenAPI specifications</li>
+                                    <li>Auth, caching and error contracts the client can rely on</li>
+                                </ul>
+                                <div class="tags">
+                                    <span class="tag">Node.js</span><span class="tag">Express</span>
+                                    <span class="tag">GraphQL</span><span class="tag">Swagger / OpenAPI</span>
+                                    <span class="tag">Loopback</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="cap reveal">
+                            <span class="cap__chip">Develop</span>
+                            <h3 class="cap__h">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody4" aria-controls="capDetail">
+                                    <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+                                    <span class="cap__name">Database development<small>Backend</small></span>
+                                    <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </button>
+                            </h3>
+                            <p class="cap__lede">I design and build the stores that persist your business data.</p>
+                            <div class="cap__years">
+                                <span class="meter" aria-hidden="true"><i style="--v:.24"></i></span>
+                                <span class="cap__yr"><b>4</b> yrs</span>
+                            </div>
+                            <div class="cap__body" id="capBody4" hidden>
+                                <ul class="cap__list">
+                                    <li>Schema and index design for SQL and NoSQL stores</li>
+                                    <li>Migrations, seed data and environment parity</li>
+                                    <li>Query profiling when a screen starts to drag</li>
+                                </ul>
+                                <div class="tags">
+                                    <span class="tag">MongoDB</span><span class="tag">MySQL</span>
+                                    <span class="tag">PostgreSQL</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="cap reveal">
+                            <span class="cap__chip">Deploy</span>
+                            <h3 class="cap__h">
+                                <button class="cap__head" type="button" aria-expanded="false" data-detail="capBody5" aria-controls="capDetail">
+                                    <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.2 9.5 4.25 4.25 0 0 0 7 19h10.5z"/><path d="M12 16v-5M12 11l-2 2M12 11l2 2"/></svg></span>
+                                    <span class="cap__name">Deployment &amp; hosting<small>Cloud</small></span>
+                                    <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </button>
+                            </h3>
+                            <p class="cap__lede">I ship the application to a cloud platform and keep the pipeline green.</p>
+                            <div class="cap__years">
+                                <span class="meter" aria-hidden="true"><i style="--v:.24"></i></span>
+                                <span class="cap__yr"><b>4</b> yrs</span>
+                            </div>
+                            <div class="cap__body" id="capBody5" hidden>
+                                <ul class="cap__list">
+                                    <li>Containerised builds and reproducible environments</li>
+                                    <li>CI/CD pipelines with quality gates</li>
+                                    <li>Hosting on Azure and Cloud Foundry</li>
+                                    <li>Release monitoring and rollback paths</li>
+                                </ul>
+                                <div class="tags">
+                                    <span class="tag">Azure</span><span class="tag">Docker</span>
+                                    <span class="tag">Kubernetes</span><span class="tag">GitHub Actions</span>
+                                    <span class="tag">Cloud Foundry</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- one drawer for all five cards: the cards keep a single
+                         fixed size, and the detail opens underneath them -->
+                    <div class="cap-detail" id="capDetail" role="region" aria-labelledby="capDetailTitle" hidden>
+                        <div class="cap-detail__bar">
+                            <h4 class="cap-detail__title" id="capDetailTitle"></h4>
+                            <button class="cap-detail__close" type="button" aria-label="Close details">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                            </button>
+                        </div>
+                        <div class="cap-detail__content"></div>
+                    </div>
+                </div>
+
+                <!-- ------------------------------------ proficiency matrix -->
+                <div class="prof">
+                    <div class="prof__intro" data-stagger>
+                        <p class="prof__note reveal">
+                            <span class="prof__noteTag">Primary</span>
+                            Most of my work is frontend development &mdash; 17+ years building and running web
+                            applications for airline, telecom and financial products.
+                        </p>
+                        <p class="prof__note prof__note--alt reveal">
+                            <span class="prof__noteTag">Secondary</span>
+                            Alongside that I design in Figma and Adobe XD and work server-side in Node.js,
+                            which makes me a full-stack MEAN developer &mdash; 8+ years in these secondary skills.
+                        </p>
+                    </div>
+
+                    <div class="tabs reveal">
+                        <div class="tabs__list" role="tablist" aria-label="Skill depth">
+                            <button class="tabs__tab is-active" id="tabPrimary" type="button" role="tab" aria-selected="true" aria-controls="panelPrimary">Primary skills</button>
+                            <button class="tabs__tab" id="tabSecondary" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="panelSecondary">Secondary skills</button>
+                            <span class="tabs__ink" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="tabs__panel" id="panelPrimary" role="tabpanel" aria-labelledby="tabPrimary" tabindex="0">
+                            <article class="prof-row">
+                                <h3 class="prof-row__h">
+                                    <button class="prof-row__head" type="button" aria-expanded="false" aria-controls="profBody1">
+                                        <span class="prof-row__num">01</span>
+                                        <span class="prof-row__name">Frontend technologies</span>
+                                        <span class="lvl lvl--expert">Expert</span>
+                                        <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                </h3>
+                                <div class="prof-row__body" id="profBody1" hidden>
+                                    <ul class="cap__list">
+                                        <li>HTML for structure, CSS for styling, JavaScript and TypeScript for behaviour</li>
+                                        <li>Responsive interfaces built on the three core web technologies rather than on a framework's defaults</li>
+                                    </ul>
+                                    <div class="tags">
+                                        <span class="tag">HTML5</span><span class="tag">CSS3 / SCSS</span>
+                                        <span class="tag">JavaScript ESNext</span><span class="tag">TypeScript</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="prof-row">
+                                <h3 class="prof-row__h">
+                                    <button class="prof-row__head" type="button" aria-expanded="false" aria-controls="profBody2">
+                                        <span class="prof-row__num">02</span>
+                                        <span class="prof-row__name">Frontend libraries &amp; frameworks</span>
+                                        <span class="lvl lvl--expert">Expert</span>
+                                        <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                </h3>
+                                <div class="prof-row__body" id="profBody2" hidden>
+                                    <ul class="cap__list">
+                                        <li>Production experience in Angular, React, Vue and Backbone</li>
+                                        <li>Atomic design and test-driven component work with Jasmine and Jest</li>
+                                        <li>Styled components and build plugins that keep development fast</li>
+                                    </ul>
+                                    <div class="tags">
+                                        <span class="tag">Angular v16&ndash;21</span><span class="tag">React</span>
+                                        <span class="tag">Vue.js</span><span class="tag">Backbone.js</span>
+                                        <span class="tag">Next.js</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="prof-row">
+                                <h3 class="prof-row__h">
+                                    <button class="prof-row__head" type="button" aria-expanded="false" aria-controls="profBody3">
+                                        <span class="prof-row__num">03</span>
+                                        <span class="prof-row__name">State management</span>
+                                        <span class="lvl lvl--expert">Expert</span>
+                                        <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                </h3>
+                                <div class="prof-row__body" id="profBody3" hidden>
+                                    <ul class="cap__list">
+                                        <li>Predictable, testable stores for large single-page applications</li>
+                                        <li>Reactive streams and signals where they beat a global store</li>
+                                    </ul>
+                                    <div class="tags">
+                                        <span class="tag">NgRx</span><span class="tag">Redux</span>
+                                        <span class="tag">Vuex</span><span class="tag">RxJS</span>
+                                        <span class="tag">Signals</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="prof-row">
+                                <h3 class="prof-row__h">
+                                    <button class="prof-row__head" type="button" aria-expanded="false" aria-controls="profBody4">
+                                        <span class="prof-row__num">04</span>
+                                        <span class="prof-row__name">Development tooling</span>
+                                        <span class="lvl lvl--expert">Expert</span>
+                                        <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                </h3>
+                                <div class="prof-row__body" id="profBody4" hidden>
+                                    <ul class="cap__list">
+                                        <li>Nx monorepos with shared libraries and enforced boundaries</li>
+                                        <li>Component workshops and visual review in Storybook</li>
+                                        <li>Bundler configuration tuned for build and runtime cost</li>
+                                    </ul>
+                                    <div class="tags">
+                                        <span class="tag">Nx</span><span class="tag">Vite</span>
+                                        <span class="tag">Webpack</span><span class="tag">Storybook</span>
+                                        <span class="tag">VS Code</span><span class="tag">Git</span>
+                                        <span class="tag">Postman</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="tabs__panel" id="panelSecondary" role="tabpanel" aria-labelledby="tabSecondary" tabindex="0" hidden>
+                            <article class="prof-row">
+                                <h3 class="prof-row__h">
+                                    <button class="prof-row__head" type="button" aria-expanded="false" aria-controls="profBody5">
+                                        <span class="prof-row__num">05</span>
+                                        <span class="prof-row__name">Graphics &amp; UI design</span>
+                                        <span class="lvl lvl--mid">Intermediate</span>
+                                        <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                </h3>
+                                <div class="prof-row__body" id="profBody5" hidden>
+                                    <ul class="cap__list">
+                                        <li>Insight turned into graphic design in Adobe XD and Figma</li>
+                                        <li>Interface and infographic work for websites and web applications</li>
+                                    </ul>
+                                    <div class="tags">
+                                        <span class="tag">Adobe XD</span><span class="tag">Figma</span>
+                                        <span class="tag">Photoshop</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="prof-row">
+                                <h3 class="prof-row__h">
+                                    <button class="prof-row__head" type="button" aria-expanded="false" aria-controls="profBody6">
+                                        <span class="prof-row__num">06</span>
+                                        <span class="prof-row__name">REST API development</span>
+                                        <span class="lvl lvl--mid">Intermediate</span>
+                                        <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                </h3>
+                                <div class="prof-row__body" id="profBody6" hidden>
+                                    <ul class="cap__list">
+                                        <li>REST APIs built with Loopback in Node.js</li>
+                                        <li>Swagger specifications written before the client work starts</li>
+                                        <li>GraphQL where a screen needs one round trip instead of five</li>
+                                    </ul>
+                                    <div class="tags">
+                                        <span class="tag">Node.js</span><span class="tag">Loopback</span>
+                                        <span class="tag">Swagger</span><span class="tag">GraphQL</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="prof-row">
+                                <h3 class="prof-row__h">
+                                    <button class="prof-row__head" type="button" aria-expanded="false" aria-controls="profBody7">
+                                        <span class="prof-row__num">07</span>
+                                        <span class="prof-row__name">Database development</span>
+                                        <span class="lvl lvl--mid">Intermediate</span>
+                                        <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                </h3>
+                                <div class="prof-row__body" id="profBody7" hidden>
+                                    <ul class="cap__list">
+                                        <li>Day-to-day business data organised in both SQL and NoSQL stores</li>
+                                        <li>Schema, index and migration work alongside the frontend</li>
+                                    </ul>
+                                    <div class="tags">
+                                        <span class="tag">MongoDB</span><span class="tag">MySQL</span>
+                                        <span class="tag">PostgreSQL</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="prof-row">
+                                <h3 class="prof-row__h">
+                                    <button class="prof-row__head" type="button" aria-expanded="false" aria-controls="profBody8">
+                                        <span class="prof-row__num">08</span>
+                                        <span class="prof-row__name">Cloud platforms</span>
+                                        <span class="lvl lvl--low">Beginner</span>
+                                        <svg class="cap__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                </h3>
+                                <div class="prof-row__body" id="profBody8" hidden>
+                                    <ul class="cap__list">
+                                        <li>Single-page apps and REST APIs hosted on Pivotal Cloud Foundry and Microsoft Azure</li>
+                                        <li>Containerised deploys through CI/CD</li>
+                                    </ul>
+                                    <div class="tags">
+                                        <span class="tag">Microsoft Azure</span><span class="tag">Cloud Foundry</span>
+                                        <span class="tag">Docker</span><span class="tag">Kubernetes</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ======================================================== work -->
         <section class="section" id="work">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">03 &mdash; Work</span>
+                    <span class="section__eyebrow">04 &mdash; Work</span>
                     <h2 class="section__title" data-split>Selected repositories</h2>
                     <p class="section__note">Side projects and build-outs from <a class="link" href="https://github.com/yaseerhaja" target="_blank" rel="noopener">github.com/yaseerhaja</a> &mdash; mostly full-stack experiments in Angular, Vue and Node.</p>
                 </div>
@@ -526,7 +973,7 @@
         <section class="section" id="experience">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">04 &mdash; Experience</span>
+                    <span class="section__eyebrow">05 &mdash; Experience</span>
                     <h2 class="section__title" data-split>Where I've shipped</h2>
                     <p class="section__note">Aviation, telecom and financial services &mdash; consistently on the platform side, close to real customers.</p>
                 </div>
@@ -614,7 +1061,7 @@
         <section class="section" id="background">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">05 &mdash; Background</span>
+                    <span class="section__eyebrow">06 &mdash; Background</span>
                     <h2 class="section__title" data-split>Education, languages &amp; awards</h2>
                 </div>
 
@@ -668,7 +1115,7 @@
             <div class="wrap">
                 <div class="contact">
                     <div class="reveal">
-                        <span class="section__eyebrow">06 &mdash; Contact</span>
+                        <span class="section__eyebrow">07 &mdash; Contact</span>
                         <h2 class="contact__title" data-split>Let's build something<br>worth shipping.</h2>
                         <p class="contact__note">
                             Open to senior and lead frontend roles in the Netherlands and remote-EU.
