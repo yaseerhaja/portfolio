@@ -761,6 +761,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .skill-card__icon svg { width: 20px; height: 20px; }
 .skill-card h3 { font-size: 1.05rem; }
 
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
 .tags { position: relative; display: flex; flex-wrap: wrap; gap: 8px; }
 .tag {
   padding: 6px 12px;
@@ -773,6 +775,23 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
     transform var(--dur) var(--ease);
 }
+/* the mark carries the chip's colour, so a logo never fights the palette
+   or the theme; anything that is a practice rather than a product gets the
+   neutral diamond instead */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.tag__i {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+  fill: currentColor;
+  opacity: 0.72;
+}
+.tag:hover .tag__i { opacity: 1; }
+.tag__i use { fill: inherit; }
 .tag:hover { color: var(--fg); border-color: var(--accent-line); transform: translateY(-2px); }
 
 /* ----------------------------------------------------------------- work */
@@ -1587,6 +1606,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   white-space: nowrap;
 }
 .lvl--expert { border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent); }
+.lvl--adv { border-color: var(--border-strong); background: var(--surface-2); color: var(--fg); }
 .lvl--mid { border-color: var(--border-strong); color: var(--fg-muted); }
 
 /* the panel itself appears at once; its content is what animates in */
