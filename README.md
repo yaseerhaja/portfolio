@@ -40,8 +40,13 @@ has no JavaScript dependencies.
 - **Motion is transform and opacity only**, on a single rAF-throttled scroll pass, and every effect
   switches itself off under `prefers-reduced-motion`. There is a print stylesheet too.
 - **Accessibility** is part of the build, not a pass at the end: skip link, visible focus rings,
-  ARIA tab and disclosure patterns, `aria-hidden` on the carousel's cloned cards, and a
-  visually-hidden transcript behind the animated role line.
+  ARIA tab and disclosure patterns, a carousel that loops by moving cards rather than duplicating
+  them, and a visually-hidden transcript behind the animated role line.
+
+## Credits
+
+Technology chips carry brand marks from [Simple Icons](https://simpleicons.org) (CC0), inlined as a
+single SVG sprite. Anything that is a practice rather than a product uses a neutral mark instead.
 
 ## Deployment
 
