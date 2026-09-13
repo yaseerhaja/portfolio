@@ -12,16 +12,25 @@
   /* ---------------------------------------------------------- theme */
   var themeToggle = document.getElementById('themeToggle');
 
-  function applyTheme(theme) {
+  var themeMetas = document.querySelectorAll('meta[name="theme-color"]');
+
+  function applyTheme(theme, chosen) {
     root.setAttribute('data-theme', theme);
+
+    /* the two theme-color tags are media-scoped, so they track the OS on
+       their own — pin them only once the visitor has overridden it here */
+    if (chosen) {
+      Array.prototype.forEach.call(themeMetas, function (m) {
+        m.setAttribute('content', theme === 'dark' ? '#08080a' : '#fbfbfc');
+      });
+    }
+
     if (themeToggle) {
       themeToggle.setAttribute(
         'aria-label',
         theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
       );
     }
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#08080a' : '#fbfbfc');
   }
 
   var stored = null;
@@ -32,15 +41,15 @@
   }
 
   if (stored === 'light' || stored === 'dark') {
-    applyTheme(stored);
+    applyTheme(stored, true);
   } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    applyTheme('light');
+    applyTheme('light', false);
   }
 
   if (themeToggle) {
     themeToggle.addEventListener('click', function () {
       var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
+      applyTheme(next, true);
       try {
         localStorage.setItem(STORAGE_KEY, next);
       } catch (e) {
@@ -442,22 +451,23 @@
   }
 
   /* ------------------------------------------------------- work carousel */
-  /* Continuous circular marquee. The original cards are cloned until the
-     track is at least twice the viewport, then the offset wraps by one
-     set width — so the loop has no seam and no "rewind" jump. Falls back
-     to the plain grid under reduced motion or if anything is missing. */
+  /* Continuous circular marquee. The loop wraps by MOVING a card from one
+     end of the track to the other rather than cloning the set — the DOM
+     holds each repository exactly once, so nothing reading the page (a
+     crawler, a reader mode, a screen reader) sees the list three times.
+     Falls back to the plain grid under reduced motion, if anything is
+     missing, or if the cards cannot cover the frame. */
   (function () {
     var frame = document.getElementById('workCarousel');
     var viewport = document.getElementById('workViewport');
     var track = document.getElementById('workTrack');
     if (!frame || !viewport || !track || reduceMotion) return;
 
-    var originals = Array.prototype.slice.call(track.children);
-    if (originals.length < 2) return;
+    var cards = Array.prototype.slice.call(track.children);
+    if (cards.length < 3) return;
 
     frame.classList.add('is-live');
 
-    var setWidth = 0;
     var step = 0;
     var x = 0;
     var target = 0;
@@ -468,57 +478,41 @@
     var lastPointerX = 0;
     var SPEED = 38; /* px per second */
 
-    function clearClones() {
-      Array.prototype.slice.call(track.querySelectorAll('[data-clone]')).forEach(function (el) {
-        track.removeChild(el);
-      });
-    }
-
-    function gapWidth() {
-      var g = parseFloat(getComputedStyle(track).columnGap);
-      return isNaN(g) ? 0 : g;
-    }
-
     function measure() {
-      clearClones();
+      var gap = parseFloat(getComputedStyle(track).columnGap);
+      if (isNaN(gap)) gap = 0;
+      step = cards[0].getBoundingClientRect().width + gap;
 
-      var gap = gapWidth();
-      setWidth = originals.reduce(function (sum, el) {
-        return sum + el.getBoundingClientRect().width + gap;
-      }, 0);
-      step = originals[0].getBoundingClientRect().width + gap;
-
-      /* enough copies to cover the viewport plus one full set */
-      var needed = Math.ceil((viewport.getBoundingClientRect().width + setWidth) / setWidth);
-      for (var i = 0; i < needed; i++) {
-        originals.forEach(function (el) {
-          var copy = el.cloneNode(true);
-          copy.setAttribute('data-clone', '');
-          copy.setAttribute('aria-hidden', 'true');
-          /* clones must not be tab stops or duplicate ids */
-          copy.removeAttribute('id');
-          Array.prototype.slice.call(copy.querySelectorAll('a, button, [id]')).forEach(function (node) {
-            node.removeAttribute('id');
-            if (node.tagName === 'A' || node.tagName === 'BUTTON') node.setAttribute('tabindex', '-1');
-          });
-          track.appendChild(copy);
-        });
+      /* the strip has to be wider than the frame plus the card that is
+         mid-flight, or wrapping would tear a hole at one end */
+      var covers = step * cards.length >= viewport.getBoundingClientRect().width + step;
+      frame.classList.toggle('is-live', covers);
+      if (!covers) {
+        track.style.transform = '';
+        x = target = 0;
       }
-
-      x = wrap(x);
-      target = x;
       draw();
     }
 
-    function wrap(v) {
-      if (!setWidth) return v;
-      while (v <= -setWidth) v += setWidth;
-      while (v > 0) v -= setWidth;
-      return v;
+    function draw() {
+      if (!frame.classList.contains('is-live')) return;
+      track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
     }
 
-    function draw() {
-      track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+    /* recycle the card that has just left the frame to the other end and
+       pay the offset back, so the movement reads as one endless strip */
+    function recycle() {
+      var guard = cards.length * 2;
+      while (x <= -step && guard--) {
+        track.appendChild(track.firstElementChild);
+        x += step;
+        target += step;
+      }
+      while (x > 0 && guard--) {
+        track.insertBefore(track.lastElementChild, track.firstElementChild);
+        x -= step;
+        target -= step;
+      }
     }
 
     var last = 0;
@@ -527,22 +521,17 @@
       var dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
       last = now;
 
-      if (!paused && !pausedByUser && !dragging && !document.hidden) {
-        target -= SPEED * dt;
+      if (frame.classList.contains('is-live')) {
+        if (!paused && !pausedByUser && !dragging && !document.hidden) {
+          target -= SPEED * dt;
+        }
+
+        /* ease toward the target so button nudges glide instead of jumping */
+        x += (target - x) * (dragging ? 1 : 0.14);
+        recycle();
+        draw();
       }
 
-      /* ease toward the target so button nudges glide instead of jumping */
-      x += (target - x) * (dragging ? 1 : 0.14);
-
-      if (target <= -setWidth) {
-        target += setWidth;
-        x += setWidth;
-      } else if (target > 0) {
-        target -= setWidth;
-        x -= setWidth;
-      }
-
-      draw();
       requestAnimationFrame(tick);
     }
 
