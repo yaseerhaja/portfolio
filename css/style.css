@@ -93,6 +93,13 @@
 
 html { scroll-behavior: smooth; scroll-padding-top: 96px; }
 
+/* form controls do not inherit the page font — without this the level
+   badges and any text inside a button fall back to the UA's Arial */
+button,
+input,
+select,
+textarea { font-family: inherit; }
+
 body {
   margin: 0;
   background: var(--bg);
