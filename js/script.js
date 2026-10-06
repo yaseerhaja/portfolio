@@ -368,7 +368,10 @@
 
     var current = currentSection();
     sections.forEach(function (s) {
-      s.link.classList.toggle('is-active', s === current);
+      var on = s === current;
+      s.link.classList.toggle('is-active', on);
+      if (on) s.link.setAttribute('aria-current', 'true');
+      else s.link.removeAttribute('aria-current');
     });
   }
 
@@ -663,6 +666,14 @@
     detailBody.innerHTML = source.innerHTML;
 
     detail.hidden = false;
+
+    /* a keyboard user would otherwise tab through the remaining cards before
+       reaching the detail they just opened */
+    if (document.activeElement === btn) {
+      detailTitle.tabIndex = -1;
+      detailTitle.focus({ preventScroll: true });
+    }
+
     if (!reduceMotion) {
       detail.removeAttribute('data-anim');
       void detail.offsetWidth;
