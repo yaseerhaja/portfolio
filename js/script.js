@@ -368,7 +368,10 @@
 
     var current = currentSection();
     sections.forEach(function (s) {
-      s.link.classList.toggle('is-active', s === current);
+      var on = s === current;
+      s.link.classList.toggle('is-active', on);
+      if (on) s.link.setAttribute('aria-current', 'true');
+      else s.link.removeAttribute('aria-current');
     });
   }
 
@@ -663,6 +666,14 @@
     detailBody.innerHTML = source.innerHTML;
 
     detail.hidden = false;
+
+    /* a keyboard user would otherwise tab through the remaining cards before
+       reaching the detail they just opened */
+    if (document.activeElement === btn) {
+      detailTitle.tabIndex = -1;
+      detailTitle.focus({ preventScroll: true });
+    }
+
     if (!reduceMotion) {
       detail.removeAttribute('data-anim');
       void detail.offsetWidth;
@@ -765,6 +776,104 @@
       moveInk(tabList.querySelector('.tabs__tab.is-active') || tabs[0]);
     });
   }
+
+  /* ------------------------------------------------- live repository data */
+  /* Stars, language and last-push date are written into the markup so the
+     cards are complete without JavaScript, then refreshed from the GitHub
+     API. One unauthenticated request covers every card; the answer is
+     cached for six hours because the anonymous limit is 60 an hour per
+     address. Any failure leaves the markup exactly as it shipped. */
+  (function () {
+    var cards = document.querySelectorAll('.work-card[data-repo]');
+    if (!cards.length || !window.fetch) return;
+
+    var KEY = 'hk-repos';
+    var MAX_AGE = 6 * 60 * 60 * 1000;
+    var ENDPOINT = 'https://api.github.com/users/yaseerhaja/repos?per_page=100&sort=pushed';
+
+    function read() {
+      try {
+        var raw = localStorage.getItem(KEY);
+        if (!raw) return null;
+        var box = JSON.parse(raw);
+        if (!box || Date.now() - box.at > MAX_AGE) return null;
+        return box.repos;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function write(repos) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({ at: Date.now(), repos: repos }));
+      } catch (e) {
+        /* private mode, quota, blocked storage — the data is a nicety */
+      }
+    }
+
+    function ago(iso) {
+      var days = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+      if (days < 1) return 'today';
+      if (days === 1) return 'yesterday';
+      if (days < 30) return days + ' days ago';
+      var months = Math.round(days / 30.4);
+      if (months < 18) return months + (months === 1 ? ' month ago' : ' months ago');
+      return Math.round(days / 365) + ' years ago';
+    }
+
+    var STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg>';
+
+    function paint(repos) {
+      var byName = {};
+      repos.forEach(function (r) { byName[r.name] = r; });
+
+      Array.prototype.forEach.call(cards, function (card) {
+        var repo = byName[card.getAttribute('data-repo')];
+        if (!repo) return;
+
+        var foot = card.querySelector('.work-card__foot');
+        if (!foot) return;
+
+        var live = foot.querySelector('.work-card__live');
+        if (!live) {
+          live = document.createElement('span');
+          live.className = 'work-card__live';
+          foot.appendChild(live);
+        }
+
+        var bits = [];
+        if (repo.stargazers_count > 0) {
+          bits.push('<span>' + STAR + repo.stargazers_count +
+            '<span class="visually-hidden"> ' +
+            (repo.stargazers_count === 1 ? 'star' : 'stars') + ' on GitHub</span></span>');
+        }
+        if (repo.pushed_at) {
+          bits.push('<span>Updated ' + ago(repo.pushed_at) + '</span>');
+        }
+        live.innerHTML = bits.join('');
+      });
+    }
+
+    var cached = read();
+    if (cached) {
+      paint(cached);
+      return;
+    }
+
+    fetch(ENDPOINT, { headers: { Accept: 'application/vnd.github+json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (repos) {
+        if (!repos || !repos.length) return;
+        var slim = repos.map(function (r) {
+          return { name: r.name, stargazers_count: r.stargazers_count, pushed_at: r.pushed_at };
+        });
+        write(slim);
+        paint(slim);
+      })
+      .catch(function () {
+        /* offline, rate-limited or blocked — the markup already reads correctly */
+      });
+  })();
 
   /* ------------------------------------------------- copy to clipboard */
   /* The mailto: button next to this one needs a mail client to do

@@ -2,7 +2,7 @@
   "name": "Hajamohaideen Kudhbudeen — Senior Frontend Engineer",
   "short_name": "Hajamohaideen K",
   "description": "Portfolio of Hajamohaideen Kudhbudeen, Senior Frontend Engineer working in Angular, TypeScript and design systems.",
-  "id": "/portfolio/",
+  "id": "../../",
   "start_url": "../../",
   "scope": "../../",
   "display": "standalone",

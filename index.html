@@ -37,9 +37,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="manifest" href="img/favicon/site.webmanifest">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- the two faces the page actually renders, preloaded so text does not
+         flash through the fallback stack -->
+    <link rel="preload" href="fonts/archivo-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/space-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/style.css">
 
     <script type="application/ld+json">
@@ -102,6 +103,7 @@
                 <a class="nav__link" href="#about">About</a>
                 <a class="nav__link" href="#skills">Skills</a>
                 <a class="nav__link" href="#services">Services</a>
+                <a class="nav__link" href="#case">Case study</a>
                 <a class="nav__link" href="#work">Work</a>
                 <a class="nav__link" href="#experience">Experience</a>
                 <a class="nav__link" href="#background">Background</a>
@@ -164,7 +166,7 @@
 
     <main id="main">
         <!-- ======================================================= hero -->
-        <section class="hero" id="top">
+        <section class="hero" id="top" aria-labelledby="heroName">
             <div class="hero__aura" id="heroAura" aria-hidden="true"></div>
 
             <div class="wrap">
@@ -175,7 +177,7 @@
                             EU permanent resident &middot; no sponsorship required
                         </span>
 
-                        <h1 class="hero__title" data-split>Hajamohaideen <span class="accent">Kudhbudeen</span></h1>
+                        <h1 class="hero__title" id="heroName" data-split>Hajamohaideen <span class="accent">Kudhbudeen</span></h1>
 
                         <p class="hero__role reveal">
                             Senior Frontend Engineer <em>/</em><span class="typewriter" id="typewriter"
@@ -240,11 +242,11 @@
         </section>
 
         <!-- ======================================================= about -->
-        <section class="section" id="about">
+        <section class="section" id="about" aria-labelledby="aboutTitle">
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">01 &mdash; About</span>
-                    <h2 class="section__title" data-split>What I actually do</h2>
+                    <h2 class="section__title" id="aboutTitle" data-split>What I actually do</h2>
                 </div>
 
                 <div class="about">
@@ -279,11 +281,11 @@
         </section>
 
         <!-- ====================================================== skills -->
-        <section class="section" id="skills">
+        <section class="section" id="skills" aria-labelledby="skillsTitle">
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">02 &mdash; Skills</span>
-                    <h2 class="section__title" data-split>Toolkit</h2>
+                    <h2 class="section__title" id="skillsTitle" data-split>Toolkit</h2>
                     <p class="section__note">Grouped by what I use them for, not by how long the list looks.</p>
                 </div>
 
@@ -454,11 +456,11 @@
         </section>
 
         <!-- ==================================================== services -->
-        <section class="section" id="services">
+        <section class="section" id="services" aria-labelledby="servicesTitle">
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">03 &mdash; Services</span>
-                    <h2 class="section__title" data-split>What I can do for your business</h2>
+                    <h2 class="section__title" id="servicesTitle" data-split>What I can do for your business</h2>
                     <p class="section__note">Five capabilities across three phases of delivery. Open a card to see what each one covers.</p>
                 </div>
 
@@ -881,19 +883,123 @@
             </div>
         </section>
 
-        <!-- ======================================================== work -->
-        <section class="section" id="work">
+        <!-- ================================================== case study -->
+        <section class="section" id="case" aria-labelledby="caseTitle">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">04 &mdash; Work</span>
-                    <h2 class="section__title" data-split>Selected repositories</h2>
+                    <span class="section__eyebrow">04 &mdash; Case study</span>
+                    <h2 class="section__title" id="caseTitle" data-split>The seatmap</h2>
+                    <p class="section__note">
+                        One feature, start to finish: how an Angular seat-selection flow for KLM
+                        was rebuilt, what constrained it, and what changed as a result.
+                    </p>
+                </div>
+
+                <div class="case">
+                    <div class="case__body">
+                        <article class="case__part reveal">
+                            <h3 class="case__h"><span class="case__step" aria-hidden="true">01</span>The problem</h3>
+                            <p>
+                                Seat selection sits in the middle of the KLM BLUEWEB booking journey,
+                                between payment and check-in. It is also where a measurable share of
+                                ancillary revenue is won or lost: seats, bags and add-ons are chosen
+                                here or not at all. The flow had to work on a phone in an airport,
+                                for a passenger using a screen reader, on an aircraft layout that
+                                differs by fleet and by cabin &mdash; and it had to keep working while
+                                the surrounding portal was being migrated across Angular versions.
+                            </p>
+                        </article>
+
+                        <article class="case__part reveal">
+                            <h3 class="case__h"><span class="case__step" aria-hidden="true">02</span>The constraints</h3>
+                            <ul class="case__list">
+                                <li><strong>Accessibility was not negotiable.</strong> An airline seatmap
+                                    is a legal and ethical obligation, not a nice-to-have: a passenger
+                                    who cannot choose a seat cannot be sure of travelling in the seat
+                                    they need.</li>
+                                <li><strong>The data was over-fetched.</strong> Seat availability,
+                                    pricing and passenger context arrived from separate services,
+                                    each returning far more than the screen used.</li>
+                                <li><strong>Several teams shared the surface.</strong> Anything built
+                                    only for the seatmap would be rebuilt, slightly differently, by the
+                                    next team that needed it.</li>
+                            </ul>
+                        </article>
+
+                        <article class="case__part reveal">
+                            <h3 class="case__h"><span class="case__step" aria-hidden="true">03</span>The approach</h3>
+                            <ul class="case__list">
+                                <li>Built the seat grid as <strong>reusable Angular components</strong>
+                                    in the shared library rather than inside the feature, so the
+                                    patterns &mdash; selection state, pricing badges, legend, cabin
+                                    switching &mdash; became available to every team on the portal.</li>
+                                <li>Made the grid <strong>fully operable from the keyboard</strong> and
+                                    labelled for screen readers against WCAG 2.1 AA and the WAI-ARIA
+                                    authoring practices: a seat announces its row, class, price and
+                                    availability, not just its coordinates.</li>
+                                <li>Replaced the chatty REST calls with <strong>Node.js services and a
+                                    GraphQL schema</strong> shaped to the screen, which removed the
+                                    over-fetching and held response times under peak load.</li>
+                                <li>Covered the flow with <strong>Jest and Playwright</strong>, and ran
+                                    the variants as <strong>Optimizely experiments</strong>, so changes
+                                    to a revenue-bearing screen were measured rather than argued.</li>
+                                <li>Shipped it through the existing <strong>CI/CD pipeline</strong>
+                                    (Docker, Kubernetes, Azure) with rollback planned before release,
+                                    not improvised after one.</li>
+                            </ul>
+                        </article>
+
+                        <article class="case__part reveal">
+                            <h3 class="case__h"><span class="case__step" aria-hidden="true">04</span>What changed</h3>
+                            <p>
+                                The seatmap work drove a <strong>30% uplift in ancillary sales</strong>
+                                across seats, bags and add-ons. The component library it produced cut
+                                <strong>UI rework by 30%</strong> and <strong>code volume by 45%</strong>
+                                for the teams that adopted it, and extended the portal to
+                                assistive-technology users who had previously been unable to complete
+                                the journey unaided. The componentisation of the wider booking portal
+                                lifted <strong>user engagement by 30%</strong>.
+                            </p>
+                            <p>
+                                The part that outlasted the feature is the library. A seatmap ships
+                                once; a set of accessible, tested components keeps paying every time
+                                another team reaches for it.
+                            </p>
+                        </article>
+                    </div>
+
+                    <aside class="case__aside reveal" aria-label="Case study facts">
+                        <dl class="case__facts">
+                            <div><dt>Client</dt><dd>KLM Royal Dutch Airlines</dd></div>
+                            <div><dt>Employer</dt><dd>Tata Consultancy Services</dd></div>
+                            <div><dt>Role</dt><dd>Senior Frontend Engineer &mdash; feature lead</dd></div>
+                            <div><dt>Surface</dt><dd>BLUEWEB booking portal</dd></div>
+                            <div><dt>Stack</dt><dd>Angular &middot; TypeScript &middot; RxJS &middot; Node.js &middot; GraphQL</dd></div>
+                            <div><dt>Standard</dt><dd>WCAG 2.1 AA &middot; WAI-ARIA</dd></div>
+                        </dl>
+                        <ul class="case__kpis">
+                            <li><b>30%</b><span>ancillary sales uplift</span></li>
+                            <li><b>45%</b><span>less code in adopting teams</span></li>
+                            <li><b>30%</b><span>less UI rework</span></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== work -->
+        <section class="section" id="work" aria-labelledby="workTitle">
+            <div class="wrap">
+                <div class="section__head reveal">
+                    <span class="section__eyebrow">05 &mdash; Work</span>
+                    <h2 class="section__title" id="workTitle" data-split>Selected repositories</h2>
                     <p class="section__note">Side projects and build-outs from <a class="link" href="https://github.com/yaseerhaja" target="_blank" rel="noopener">github.com/yaseerhaja</a> &mdash; mostly full-stack experiments in Angular, Vue and Node.</p>
                 </div>
 
                 <div class="carousel reveal" id="workCarousel" role="group" aria-roledescription="carousel" aria-label="Selected repositories">
                     <div class="carousel__viewport" id="workViewport">
                         <div class="work carousel__track" id="workTrack">
-                    <article class="work-card">
+                    <article class="work-card" data-repo="cus-transaction-app">
                         <div class="work-card__head">
                             <span class="work-card__icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
@@ -916,7 +1022,7 @@
                         </p>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-repo="proactive-technical-assessment-hajamohaideen">
                         <div class="work-card__head">
                             <span class="work-card__icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
@@ -942,7 +1048,7 @@
                         </p>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-repo="adidas-pdp-app">
                         <div class="work-card__head">
                             <span class="work-card__icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
@@ -964,7 +1070,7 @@
                         </p>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-repo="online-checkin">
                         <div class="work-card__head">
                             <span class="work-card__icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
@@ -985,7 +1091,7 @@
                         </p>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-repo="mission-mars">
                         <div class="work-card__head">
                             <span class="work-card__icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
@@ -1010,7 +1116,7 @@
                         </p>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-repo="bank-webapp">
                         <div class="work-card__head">
                             <span class="work-card__icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
@@ -1057,11 +1163,11 @@
         </section>
 
         <!-- ================================================== experience -->
-        <section class="section" id="experience">
+        <section class="section" id="experience" aria-labelledby="experienceTitle">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">05 &mdash; Experience</span>
-                    <h2 class="section__title" data-split>Where I've shipped</h2>
+                    <span class="section__eyebrow">06 &mdash; Experience</span>
+                    <h2 class="section__title" id="experienceTitle" data-split>Where I've shipped</h2>
                     <p class="section__note">Aviation, telecom and financial services &mdash; consistently on the platform side, close to real customers.</p>
                 </div>
 
@@ -1145,11 +1251,11 @@
         </section>
 
         <!-- ================================================== background -->
-        <section class="section" id="background">
+        <section class="section" id="background" aria-labelledby="backgroundTitle">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">06 &mdash; Background</span>
-                    <h2 class="section__title" data-split>Education, languages &amp; awards</h2>
+                    <span class="section__eyebrow">07 &mdash; Background</span>
+                    <h2 class="section__title" id="backgroundTitle" data-split>Education, languages &amp; awards</h2>
                 </div>
 
                 <div class="cards3">
@@ -1198,12 +1304,12 @@
         </section>
 
         <!-- ===================================================== contact -->
-        <section class="section" id="contact">
+        <section class="section" id="contact" aria-labelledby="contactTitle">
             <div class="wrap">
                 <div class="contact">
                     <div class="reveal">
-                        <span class="section__eyebrow">07 &mdash; Contact</span>
-                        <h2 class="contact__title" data-split>Let's build something<br>worth shipping.</h2>
+                        <span class="section__eyebrow">08 &mdash; Contact</span>
+                        <h2 class="contact__title" id="contactTitle" data-split>Let's build something<br>worth shipping.</h2>
                         <p class="contact__note">
                             Open to senior and lead frontend roles in the Netherlands and remote-EU.
                             EU permanent resident &mdash; no sponsorship required.
@@ -1267,6 +1373,7 @@
     <footer class="footer">
         <div class="wrap footer__inner">
             <span>&copy; <span id="year">2026</span> Hajamohaideen Kudhbudeen</span>
+            <a class="link" href="accessibility.html">Accessibility statement</a>
         </div>
     </footer>
 
