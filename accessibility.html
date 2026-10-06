@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accessibility statement &mdash; Hajamohaideen Kudhbudeen</title>
+    <meta name="description" content="How this site was built and tested for accessibility: conformance target, assistive technologies used, known limitations, and how to report a problem.">
+    <meta name="author" content="Hajamohaideen Kudhbudeen">
+    <meta name="theme-color" content="#08080a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)">
+
+    <link rel="canonical" href="https://yaseerhaja.github.io/portfolio/accessibility.html">
+
+    <link rel="icon" href="img/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+
+    <link rel="preload" href="fonts/archivo-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/space-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="nav" id="nav">
+        <div class="wrap nav__inner">
+            <a class="nav__brand" href="index.html" aria-label="Hajamohaideen Kudhbudeen, back to the portfolio">
+                <span class="nav__mark" aria-hidden="true">HK</span>
+                <span>Hajamohaideen K</span>
+            </a>
+            <nav class="nav__links" aria-label="Primary">
+                <a class="nav__link" href="index.html">Portfolio</a>
+                <a class="nav__link is-active" aria-current="page" href="accessibility.html">Accessibility</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section" id="main">
+        <div class="wrap doc">
+            <div class="section__head">
+                <span class="section__eyebrow">Statement</span>
+                <h1 class="section__title">Accessibility</h1>
+                <p class="section__note">
+                    This site claims WCAG 2.1 AA as a professional standard, so it should say
+                    plainly what that means here, what was tested, and what is not yet right.
+                </p>
+            </div>
+
+            <h2>Conformance target</h2>
+            <p>
+                This site aims to meet <strong>WCAG 2.1 level AA</strong>. That is the standard I
+                hold production work to, and the one the component libraries described on the
+                portfolio were built against.
+            </p>
+
+            <h2>What that means in practice</h2>
+            <ul class="doc__list">
+                <li>Every interactive control is reachable and operable by keyboard alone, in a
+                    reading order that matches the visual one.</li>
+                <li>Focus is always visible, and never trapped. Opening a disclosure moves focus to
+                    what opened; closing it returns focus to the control that opened it.</li>
+                <li>Text contrast is at least 4.5:1 in both the dark and light themes, measured
+                    against the surface actually painted behind each element rather than assumed
+                    from the token.</li>
+                <li>Content is structured with real landmarks and headings &mdash; one <code>h1</code>,
+                    no skipped levels, and a named region per section &mdash; so a screen reader can
+                    navigate by structure.</li>
+                <li>All motion is decorative, driven by transform and opacity, and switches itself
+                    off under <code>prefers-reduced-motion</code>. The auto-advancing carousel has a
+                    visible pause control, stops on hover and on focus, and is replaced by a static
+                    grid when reduced motion is requested.</li>
+                <li>Images carry text alternatives; decorative graphics are hidden from assistive
+                    technology; the animated role line in the header is hidden from it and the full
+                    text exposed instead.</li>
+                <li>The page works without JavaScript: content is in the markup, not assembled at
+                    runtime.</li>
+            </ul>
+
+            <h2>How it was tested</h2>
+            <ul class="doc__list">
+                <li>Keyboard-only traversal of every control on the page.</li>
+                <li>Programmatic contrast measurement of every text style against the surface
+                    actually painted behind it, in both themes. The lowest ratio on the page is
+                    6.0:1, against a 4.5:1 requirement.</li>
+                <li>Structural checks: landmark names, heading order, accessible names on every
+                    link and button, no duplicate IDs, and no focusable duplicates inside the
+                    carousel.</li>
+                <li>Layout verified from 375&nbsp;px upward with no horizontal scrolling.</li>
+                <li>Manual review alongside this &mdash; automated checks catch roughly a third of real
+                    barriers, so they are a floor, not a verdict.</li>
+            </ul>
+
+            <h2>Known limitations</h2>
+            <ul class="doc__list">
+                <li>The downloadable r&eacute;sum&eacute; is a PDF exported from Word. Its tagging has not
+                    been audited, so it may not meet the same standard as this page. If you need the
+                    r&eacute;sum&eacute; in an accessible format, ask and I will send one.</li>
+                <li>The work carousel can be dragged with a pointer. Dragging has no keyboard
+                    equivalent, though the previous, pause and next buttons cover the same ground.</li>
+                <li>The current round of testing was keyboard, contrast and structure. A full
+                    pass with VoiceOver and NVDA &mdash; the screen readers I test production work
+                    with &mdash; is still outstanding for this site specifically.</li>
+                <li>This site has not been audited by an independent third party. Everything above is
+                    my own testing.</li>
+            </ul>
+
+            <h2>Reporting a problem</h2>
+            <p>
+                If something here fails you &mdash; an unreachable control, an unreadable contrast, a
+                screen reader reading nonsense &mdash; please tell me. Email
+                <a class="link" href="mailto:yaseerhaja@gmail.com">yaseerhaja@gmail.com</a> with the
+                page, the assistive technology and browser you were using, and what happened. I will
+                reply within five working days and will tell you either when it is fixed or why it is
+                not.
+            </p>
+
+            <p class="doc__meta">Last reviewed: 6 October 2026.</p>
+
+            <p><a class="link" href="index.html">&larr; Back to the portfolio</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap footer__inner">
+            <span>&copy; <span id="year">2026</span> Hajamohaideen Kudhbudeen</span>
+            <a class="link" href="index.html">Portfolio</a>
+        </div>
+    </footer>
+</body>
+</html>
