@@ -103,6 +103,7 @@
                 <a class="nav__link" href="#about">About</a>
                 <a class="nav__link" href="#skills">Skills</a>
                 <a class="nav__link" href="#services">Services</a>
+                <a class="nav__link" href="#case">Case study</a>
                 <a class="nav__link" href="#work">Work</a>
                 <a class="nav__link" href="#experience">Experience</a>
                 <a class="nav__link" href="#background">Background</a>
@@ -882,11 +883,115 @@
             </div>
         </section>
 
+        <!-- ================================================== case study -->
+        <section class="section" id="case" aria-labelledby="caseTitle">
+            <div class="wrap">
+                <div class="section__head reveal">
+                    <span class="section__eyebrow">04 &mdash; Case study</span>
+                    <h2 class="section__title" id="caseTitle" data-split>The seatmap</h2>
+                    <p class="section__note">
+                        One feature, start to finish: how an Angular seat-selection flow for KLM
+                        was rebuilt, what constrained it, and what changed as a result.
+                    </p>
+                </div>
+
+                <div class="case">
+                    <div class="case__body">
+                        <article class="case__part reveal">
+                            <h3 class="case__h"><span class="case__step" aria-hidden="true">01</span>The problem</h3>
+                            <p>
+                                Seat selection sits in the middle of the KLM BLUEWEB booking journey,
+                                between payment and check-in. It is also where a measurable share of
+                                ancillary revenue is won or lost: seats, bags and add-ons are chosen
+                                here or not at all. The flow had to work on a phone in an airport,
+                                for a passenger using a screen reader, on an aircraft layout that
+                                differs by fleet and by cabin &mdash; and it had to keep working while
+                                the surrounding portal was being migrated across Angular versions.
+                            </p>
+                        </article>
+
+                        <article class="case__part reveal">
+                            <h3 class="case__h"><span class="case__step" aria-hidden="true">02</span>The constraints</h3>
+                            <ul class="case__list">
+                                <li><strong>Accessibility was not negotiable.</strong> An airline seatmap
+                                    is a legal and ethical obligation, not a nice-to-have: a passenger
+                                    who cannot choose a seat cannot be sure of travelling in the seat
+                                    they need.</li>
+                                <li><strong>The data was over-fetched.</strong> Seat availability,
+                                    pricing and passenger context arrived from separate services,
+                                    each returning far more than the screen used.</li>
+                                <li><strong>Several teams shared the surface.</strong> Anything built
+                                    only for the seatmap would be rebuilt, slightly differently, by the
+                                    next team that needed it.</li>
+                            </ul>
+                        </article>
+
+                        <article class="case__part reveal">
+                            <h3 class="case__h"><span class="case__step" aria-hidden="true">03</span>The approach</h3>
+                            <ul class="case__list">
+                                <li>Built the seat grid as <strong>reusable Angular components</strong>
+                                    in the shared library rather than inside the feature, so the
+                                    patterns &mdash; selection state, pricing badges, legend, cabin
+                                    switching &mdash; became available to every team on the portal.</li>
+                                <li>Made the grid <strong>fully operable from the keyboard</strong> and
+                                    labelled for screen readers against WCAG 2.1 AA and the WAI-ARIA
+                                    authoring practices: a seat announces its row, class, price and
+                                    availability, not just its coordinates.</li>
+                                <li>Replaced the chatty REST calls with <strong>Node.js services and a
+                                    GraphQL schema</strong> shaped to the screen, which removed the
+                                    over-fetching and held response times under peak load.</li>
+                                <li>Covered the flow with <strong>Jest and Playwright</strong>, and ran
+                                    the variants as <strong>Optimizely experiments</strong>, so changes
+                                    to a revenue-bearing screen were measured rather than argued.</li>
+                                <li>Shipped it through the existing <strong>CI/CD pipeline</strong>
+                                    (Docker, Kubernetes, Azure) with rollback planned before release,
+                                    not improvised after one.</li>
+                            </ul>
+                        </article>
+
+                        <article class="case__part reveal">
+                            <h3 class="case__h"><span class="case__step" aria-hidden="true">04</span>What changed</h3>
+                            <p>
+                                The seatmap work drove a <strong>30% uplift in ancillary sales</strong>
+                                across seats, bags and add-ons. The component library it produced cut
+                                <strong>UI rework by 30%</strong> and <strong>code volume by 45%</strong>
+                                for the teams that adopted it, and extended the portal to
+                                assistive-technology users who had previously been unable to complete
+                                the journey unaided. The componentisation of the wider booking portal
+                                lifted <strong>user engagement by 30%</strong>.
+                            </p>
+                            <p>
+                                The part that outlasted the feature is the library. A seatmap ships
+                                once; a set of accessible, tested components keeps paying every time
+                                another team reaches for it.
+                            </p>
+                        </article>
+                    </div>
+
+                    <aside class="case__aside reveal" aria-label="Case study facts">
+                        <dl class="case__facts">
+                            <div><dt>Client</dt><dd>KLM Royal Dutch Airlines</dd></div>
+                            <div><dt>Employer</dt><dd>Tata Consultancy Services</dd></div>
+                            <div><dt>Role</dt><dd>Senior Frontend Engineer &mdash; feature lead</dd></div>
+                            <div><dt>Surface</dt><dd>BLUEWEB booking portal</dd></div>
+                            <div><dt>Stack</dt><dd>Angular &middot; TypeScript &middot; RxJS &middot; Node.js &middot; GraphQL</dd></div>
+                            <div><dt>Standard</dt><dd>WCAG 2.1 AA &middot; WAI-ARIA</dd></div>
+                        </dl>
+                        <ul class="case__kpis">
+                            <li><b>30%</b><span>ancillary sales uplift</span></li>
+                            <li><b>45%</b><span>less code in adopting teams</span></li>
+                            <li><b>30%</b><span>less UI rework</span></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
         <!-- ======================================================== work -->
         <section class="section" id="work" aria-labelledby="workTitle">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">04 &mdash; Work</span>
+                    <span class="section__eyebrow">05 &mdash; Work</span>
                     <h2 class="section__title" id="workTitle" data-split>Selected repositories</h2>
                     <p class="section__note">Side projects and build-outs from <a class="link" href="https://github.com/yaseerhaja" target="_blank" rel="noopener">github.com/yaseerhaja</a> &mdash; mostly full-stack experiments in Angular, Vue and Node.</p>
                 </div>
@@ -1061,7 +1166,7 @@
         <section class="section" id="experience" aria-labelledby="experienceTitle">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">05 &mdash; Experience</span>
+                    <span class="section__eyebrow">06 &mdash; Experience</span>
                     <h2 class="section__title" id="experienceTitle" data-split>Where I've shipped</h2>
                     <p class="section__note">Aviation, telecom and financial services &mdash; consistently on the platform side, close to real customers.</p>
                 </div>
@@ -1149,7 +1254,7 @@
         <section class="section" id="background" aria-labelledby="backgroundTitle">
             <div class="wrap">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">06 &mdash; Background</span>
+                    <span class="section__eyebrow">07 &mdash; Background</span>
                     <h2 class="section__title" id="backgroundTitle" data-split>Education, languages &amp; awards</h2>
                 </div>
 
@@ -1203,7 +1308,7 @@
             <div class="wrap">
                 <div class="contact">
                     <div class="reveal">
-                        <span class="section__eyebrow">07 &mdash; Contact</span>
+                        <span class="section__eyebrow">08 &mdash; Contact</span>
                         <h2 class="contact__title" id="contactTitle" data-split>Let's build something<br>worth shipping.</h2>
                         <p class="contact__note">
                             Open to senior and lead frontend roles in the Netherlands and remote-EU.
