@@ -13,6 +13,7 @@ css/style.css       design tokens, layout, motion
 js/script.js        interactions, no dependencies
 img/                portrait, share card, favicons
 pdf/                downloadable résumé
+video/              3D Seatmap demo recording (WebM, 2 min, no audio)
 sitemap.xml         single-URL sitemap
 ```
 
