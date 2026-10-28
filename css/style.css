@@ -1100,8 +1100,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: 0;
   display: grid;
   gap: var(--space-4);
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   align-items: stretch;
+}
+/* two up, so the seatmap recording has room to be watched */
+@media (min-width: 760px) {
+  .projects { grid-template-columns: repeat(2, 1fr); }
 }
 .proj {
   position: relative;
@@ -1120,6 +1124,26 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-color: var(--accent-line);
   transform: translateY(-4px);
   box-shadow: var(--shadow);
+}
+.proj__media {
+  margin: calc(var(--space-5) * -1) calc(var(--space-5) * -1) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.proj__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-bottom: 1px solid var(--border);
+}
+.proj__caption {
+  padding: 0 var(--space-5);
+  color: var(--fg-subtle);
+  font-size: 0.8rem;
+  line-height: 1.55;
 }
 .proj__head {
   display: flex;
@@ -1989,7 +2013,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .prof-row__body { padding-left: var(--space-4); }
 }
 
-@media (max-width: 760px) {
+/* nine links no longer fit on one line, so the menu collapses earlier */
+@media (max-width: 1010px) {
   .nav__links {
     position: fixed;
     left: 0;
@@ -2010,6 +2035,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav__link { padding: 15px var(--space-3); border-radius: var(--radius-sm); }
   .nav__link::after { left: var(--space-3); right: auto; width: 22px; }
   .nav__toggle { display: grid; }
+}
+
+@media (max-width: 760px) {
   /* a 40px fade eats too much of a 280px card on a narrow screen */
   .carousel.is-live .carousel__viewport {
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 12px, #000 calc(100% - 12px), transparent);
