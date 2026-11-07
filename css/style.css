@@ -430,6 +430,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .nav__menu .nav__link::after { left: 12px; right: auto; width: 20px; }
 .nav__menu .nav__link:hover { background: var(--surface); }
+/* a class selector outranks the UA rule behind [hidden], so say it here */
+.nav__menu[hidden] { display: none; }
 
 .nav__link {
   position: relative;
