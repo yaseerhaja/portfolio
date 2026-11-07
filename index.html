@@ -103,11 +103,21 @@
                 <a class="nav__link" href="#about">About</a>
                 <a class="nav__link" href="#skills">Skills</a>
                 <a class="nav__link" href="#services">Services</a>
-                <a class="nav__link" href="#case">Case study</a>
                 <a class="nav__link" href="#projects">Side projects</a>
-                <a class="nav__link" href="#work">Work</a>
-                <a class="nav__link" href="#experience">Experience</a>
-                <a class="nav__link" href="#background">Background</a>
+
+                <div class="nav__group">
+                    <button class="nav__link nav__more" id="navMore" type="button" aria-expanded="false" aria-controls="navMenu">
+                        More
+                        <svg class="nav__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav__menu" id="navMenu">
+                        <a class="nav__link" href="#case">Case study</a>
+                        <a class="nav__link" href="#work">Work</a>
+                        <a class="nav__link" href="#experience">Experience</a>
+                        <a class="nav__link" href="#background">Background</a>
+                    </div>
+                </div>
+
                 <a class="nav__link" href="#contact">Contact</a>
             </nav>
 
@@ -1469,7 +1479,7 @@
             <div class="wrap">
                 <div class="section__head reveal">
                     <span class="section__eyebrow">08 &mdash; Background</span>
-                    <h2 class="section__title" id="backgroundTitle" data-split>Education, languages &amp; awards</h2>
+                    <h2 class="section__title" id="backgroundTitle" data-split>Education, certifications, languages &amp; awards</h2>
                 </div>
 
                 <div class="cards3">
@@ -1480,6 +1490,15 @@
                             <li>Specialization in Computer Science and Engineering</li>
                             <li>Rajiv Gandhi College of Engineering and Technology, Puducherry, India</li>
                             <li style="color:var(--fg-subtle)">06/2004 &mdash; 06/2008</li>
+                        </ul>
+                    </article>
+
+                    <article class="panel reveal">
+                        <h3>Certifications</h3>
+                        <ul class="panel__list">
+                            <li><b>Claude Certified Developer &mdash; Foundations</b> (CCDV-F)</li>
+                            <li>Anthropic</li>
+                            <li style="color:var(--fg-subtle)">Building with the Claude API and agentic workflows</li>
                         </ul>
                     </article>
 
