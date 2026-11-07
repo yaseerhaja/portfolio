@@ -87,6 +87,87 @@
     });
   }
 
+  /* ------------------------------------------------ grouped nav menu */
+  /* Four of the nine sections live behind a "More" disclosure so the bar
+     stays short. Below the mobile breakpoint CSS opens the group out flat
+     and hides the button, so none of this runs against a hidden control. */
+  var navMore = document.getElementById('navMore');
+  var navMenu = document.getElementById('navMenu');
+
+  function menuOpen() {
+    return navMore && navMore.getAttribute('aria-expanded') === 'true';
+  }
+
+  function setMenu(open, focusFirst) {
+    if (!navMore || !navMenu) return;
+    navMore.setAttribute('aria-expanded', String(open));
+    navMenu.hidden = !open;
+    if (open && focusFirst) {
+      var first = navMenu.querySelector('.nav__link');
+      if (first) first.focus();
+    }
+  }
+
+  function closeMenu(returnFocus) {
+    if (!menuOpen()) return;
+    setMenu(false);
+    if (returnFocus) navMore.focus();
+  }
+
+  if (navMore && navMenu) {
+    /* closed on load, not in the markup: without JS the panel stays open so
+       the four sections behind it are still reachable */
+    setMenu(false);
+
+    navMore.addEventListener('click', function () {
+      setMenu(!menuOpen());
+    });
+
+    navMore.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setMenu(true, true);
+      }
+    });
+
+    navMenu.addEventListener('keydown', function (e) {
+      var items = Array.prototype.slice.call(navMenu.querySelectorAll('.nav__link'));
+      var i = items.indexOf(document.activeElement);
+      if (i < 0) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        items[(i + 1) % items.length].focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        items[(i - 1 + items.length) % items.length].focus();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        items[0].focus();
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        items[items.length - 1].focus();
+      }
+    });
+
+    navMenu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeMenu();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu(true);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!menuOpen()) return;
+      if (!e.target.closest('.nav__group')) closeMenu();
+    });
+
+    document.addEventListener('focusin', function (e) {
+      if (!menuOpen()) return;
+      if (!e.target.closest('.nav__group')) closeMenu();
+    });
+  }
+
   /* --------------------------------------------- headline word reveal */
   /* Wraps each word as <span class="w"><i>word</i></span> so the mask can
      slide it up. Text stays in the markup for crawlers and no-JS readers. */
@@ -373,6 +454,14 @@
       if (on) s.link.setAttribute('aria-current', 'true');
       else s.link.removeAttribute('aria-current');
     });
+
+    /* a link inside the collapsed menu cannot show its own state */
+    if (navMore && navMenu) {
+      navMore.classList.toggle(
+        'is-active',
+        !!(current && navMenu.contains(current.link))
+      );
+    }
   }
 
   function requestFrame() {

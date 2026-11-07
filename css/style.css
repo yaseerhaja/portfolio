@@ -392,6 +392,45 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .nav__links { display: flex; align-items: center; gap: 2px; }
 
+/* a grouped "More" disclosure keeps the bar to six items */
+.nav__group { position: relative; }
+.nav__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 0;
+  font: inherit;
+}
+.nav__chev {
+  width: 13px;
+  height: 13px;
+  transition: transform var(--dur) var(--ease);
+}
+.nav__more[aria-expanded='true'] .nav__chev { transform: rotate(180deg); }
+.nav__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  min-width: 190px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  box-shadow: var(--shadow);
+  z-index: 20;
+}
+.nav__menu .nav__link {
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+.nav__menu .nav__link::after { left: 12px; right: auto; width: 20px; }
+.nav__menu .nav__link:hover { background: var(--surface); }
+
 .nav__link {
   position: relative;
   padding: 10px 15px;
@@ -1296,7 +1335,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* --------------------------------------------------------------- panels */
 .cards3 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(236px, 1fr));
   gap: var(--space-3);
 }
 .panel {
@@ -2013,8 +2052,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .prof-row__body { padding-left: var(--space-4); }
 }
 
-/* nine links no longer fit on one line, so the menu collapses earlier */
-@media (max-width: 1010px) {
+/* below this the bar no longer fits beside the brand and the controls */
+@media (max-width: 860px) {
   .nav__links {
     position: fixed;
     left: 0;
@@ -2033,6 +2072,23 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
   .nav__links.is-open { opacity: 1; transform: none; pointer-events: auto; }
   .nav__link { padding: 15px var(--space-3); border-radius: var(--radius-sm); }
+  /* the drawer has room for every link, so the group opens out flat */
+  .nav__more { display: none; }
+  .nav__group { position: static; }
+  .nav__menu,
+  .nav__menu[hidden] {
+    display: flex;
+    position: static;
+    transform: none;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .nav__menu .nav__link { padding: 15px var(--space-3); }
+  .nav__menu .nav__link::after { left: var(--space-3); width: 22px; }
   .nav__link::after { left: var(--space-3); right: auto; width: 22px; }
   .nav__toggle { display: grid; }
 }
